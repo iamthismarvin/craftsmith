@@ -13,6 +13,8 @@ module.exports = {
   pwa: {
     name: 'Craftsmith',
     themeColor: '#44337a',
-    backgroundColor: '#44337a',
+    manifestOptions: {
+      background_color: '#44337a',
+    },
   },
 };
