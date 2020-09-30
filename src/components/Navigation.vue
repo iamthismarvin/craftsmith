@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row justify-between items-center text-white font-bold w-full h-10">
+  <div class="flex flex-row justify-between items-center text-white font-bold w-full h-12 px-2">
     <div class="flex flex-row items-center">
       <img class="h-6 mr-1" src="@/assets/images/craftsmith-logo.svg" />
       <div>Craftsmith</div>
