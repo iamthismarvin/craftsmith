@@ -1,5 +1,5 @@
 <template>
-  <div class="home bg-purple-900 text-white">
+  <div class="home bg-purple-900 text-white min-h-screen">
     <Navigation @handle-menu="craftItem" class="p-2" :user="{ name: 'Marvin', avatar: '' }" />
     <Console class="p-4" :entries="log" />
     <div class="flex flex-col just justify-center items-center">
@@ -13,6 +13,7 @@
     <button class="button bg-purple-600 hover:bg-purple-700" @click="craftItem">
       Craft Item
     </button>
+    <Menu class="absolute w-full bottom-0" />
   </div>
 </template>
 
@@ -30,6 +31,7 @@ export default {
   }),
   components: {
     Console: defineAsyncComponent(() => import('@/components/Activity.vue')),
+    Menu: defineAsyncComponent(() => import('@/components/Menu.vue')),
     Navigation: defineAsyncComponent(() => import('@/components/Navigation.vue')),
   },
   methods: {
