@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-around bg-gray-900 h-16">
+  <div class="flex justify-around bg-gray-900 h-16 w-screen text-white">
     <MenuItem
       name="Craft"
       route="Craft"
@@ -25,5 +25,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped></style>

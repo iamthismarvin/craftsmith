@@ -1,12 +1,12 @@
 <template>
-  <div class="flex flex-row justify-between items-center text-white font-bold">
+  <div class="flex flex-row justify-between items-center text-white font-bold w-full h-10">
     <div class="flex flex-row items-center">
-      <img class="w-10 h-10 mr-2" src="@/assets/images/craftsmith-logo.svg" />
+      <img class="h-6 mr-1" src="@/assets/images/craftsmith-logo.svg" />
       <div>Craftsmith</div>
     </div>
     <svg
       @click="handleMenu"
-      class="w-8 cursor-pointer fill-current text-pink-700 "
+      class="h-6 cursor-pointer  "
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
