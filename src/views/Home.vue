@@ -1,6 +1,7 @@
 <template>
-  <div class="home">
-    <Console :entries="log" />
+  <div class="home bg-purple-900 text-white">
+    <Navigation @handle-menu="craftItem" class="p-2" :user="{ name: 'Marvin', avatar: '' }" />
+    <Console class="p-4" :entries="log" />
     <div class="flex flex-col just justify-center items-center">
       <h1 class="font-bold">Inventory</h1>
       <p>Materials: {{ inventory.materials }}</p>
@@ -29,6 +30,7 @@ export default {
   }),
   components: {
     Console: defineAsyncComponent(() => import('@/components/Activity.vue')),
+    Navigation: defineAsyncComponent(() => import('@/components/Navigation.vue')),
   },
   methods: {
     gatherMaterials() {
