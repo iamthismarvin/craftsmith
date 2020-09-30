@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-purple-900">
     <header class="absolute top-0 w-full">
-      <Navigation @handle-menu="null" class="" />
+      <Navigation @handle-menu="$router.push('/')" class="" />
       <Activity class="px-4 my-2" :entries="log" />
     </header>
     <main class="overflow-auto text-white w-full absolute">

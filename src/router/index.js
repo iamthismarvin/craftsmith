@@ -6,6 +6,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: () => import('@/views/Home.vue'),
+    meta: { layout: Default },
   },
   {
     path: '/craft',
@@ -17,6 +18,12 @@ const routes = [
     path: '/gather',
     name: 'Gather',
     component: () => import('@/views/Gather.vue'),
+    meta: { layout: Default },
+  },
+  {
+    path: '/storage',
+    name: 'Storage',
+    component: () => import('@/views/Storage.vue'),
     meta: { layout: Default },
   },
   {

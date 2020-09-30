@@ -1,7 +1,5 @@
 <template>
   <div class="home bg-purple-900 text-white min-h-screen">
-    <Navigation @handle-menu="craftItem" class="p-2" :user="{ name: 'Marvin', avatar: '' }" />
-    <Console class="p-4" :entries="log" />
     <div class="flex flex-col just justify-center items-center">
       <h1 class="font-bold">Inventory</h1>
       <p>Materials: {{ inventory.materials }}</p>
@@ -13,13 +11,10 @@
     <button class="button bg-purple-600 hover:bg-purple-700" @click="craftItem">
       Craft Item
     </button>
-    <Menu class="absolute w-full bottom-0" />
   </div>
 </template>
 
 <script>
-import { defineAsyncComponent } from 'vue';
-
 export default {
   name: 'Home',
   data: () => ({
@@ -29,11 +24,6 @@ export default {
       materials: 0,
     },
   }),
-  components: {
-    Console: defineAsyncComponent(() => import('@/components/Activity.vue')),
-    Menu: defineAsyncComponent(() => import('@/components/Menu.vue')),
-    Navigation: defineAsyncComponent(() => import('@/components/Navigation.vue')),
-  },
   methods: {
     gatherMaterials() {
       const materials = Math.floor(Math.random() * 25);
