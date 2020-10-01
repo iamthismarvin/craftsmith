@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-purple-900">
+  <div class="default min-h-screen bg-purple-900">
     <header class="absolute top-0 w-full">
       <Navigation @handle-menu="$router.push('/')" class="" />
       <Activity class="px-4 my-2" :entries="log" />
@@ -34,5 +34,9 @@ export default {
 main {
   max-height: calc(100vh - 18.5rem);
   top: 14.5rem;
+}
+.default {
+  background-color: #44337a;
+  background-image: url('~@/assets/images/topography.svg');
 }
 </style>
