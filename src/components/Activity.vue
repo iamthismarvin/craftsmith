@@ -4,6 +4,16 @@
       Activity
     </div>
     <div ref="activity" class="bg-gray-900 overflow-auto h-32 px-1 rounded-b-lg shadow-xl">
+      <div>
+        Craftsmith by
+        <a
+          class="font-bold text-blue-500"
+          href="http://github.com/iamthismarvin"
+          target="_blank"
+          rel="noopener noreferrer"
+          >@iamthismarvin</a
+        >
+      </div>
       <div v-for="entry in entries" :key="entry.id">
         {{ entry }}
       </div>

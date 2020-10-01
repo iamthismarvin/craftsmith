@@ -1,5 +1,5 @@
 <template>
-  <div class="home bg-purple-900 text-white">
+  <div class="home text-white">
     <div class="flex flex-col just justify-center items-center">
       <h1 class="font-bold">Inventory</h1>
       <p>Materials: {{ inventory.materials }}</p>
