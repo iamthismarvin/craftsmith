@@ -1,5 +1,6 @@
 <template>
   <div class="home text-white">
+    <Activity class="px-2 my-2" :entries="log" />
     <div class="flex flex-col just justify-center items-center">
       <h1 class="font-bold">Inventory</h1>
       <p>Materials: {{ inventory.materials }}</p>
@@ -15,6 +16,8 @@
 </template>
 
 <script>
+import { defineAsyncComponent } from 'vue';
+
 export default {
   name: 'Home',
   data: () => ({
@@ -24,6 +27,9 @@ export default {
       materials: 0,
     },
   }),
+  components: {
+    Activity: defineAsyncComponent(() => import('@/components/Activity.vue')),
+  },
   methods: {
     gatherMaterials() {
       const materials = Math.floor(Math.random() * 25);
