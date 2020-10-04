@@ -1,7 +1,8 @@
 <template>
   <router-link
     :to="{ name: route }"
-    class="flex flex-col justify-center items-center hover:bg-red-700 w-full"
+    active-class="bg-gray-800"
+    class="flex flex-col justify-center items-center w-full hover:bg-gray-800"
   >
     <svg
       class="w-6 h-6"
