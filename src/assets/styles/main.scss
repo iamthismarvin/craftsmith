@@ -1,2 +1,6 @@
 // Tailwind CSS
 @import '~@/assets/styles/tailwind.css';
+
+button {
+  @apply font-bold h-12 p-2 rounded-lg text-white w-full;
+}

@@ -27,15 +27,15 @@ const routes = [
     meta: { layout: Default },
   },
   {
-    path: '/shop',
-    name: 'Shop',
-    component: () => import('@/views/Shop.vue'),
-    meta: { layout: Default },
-  },
-  {
     path: '/stats',
     name: 'Stats',
     component: () => import('@/views/Stats.vue'),
+    meta: { layout: Default },
+  },
+  {
+    path: '/item',
+    name: 'Item',
+    component: () => import('@/views/Item.vue'),
     meta: { layout: Default },
   },
 ];

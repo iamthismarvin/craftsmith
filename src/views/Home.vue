@@ -1,15 +1,15 @@
 <template>
-  <div class="home text-white">
+  <div class="text-white p-2">
     <Activity class="px-2 my-2" :entries="log" />
     <div class="flex flex-col just justify-center items-center">
       <h1 class="font-bold">Inventory</h1>
       <p>Materials: {{ inventory.materials }}</p>
       <p>Items: {{ inventory.items }}</p>
     </div>
-    <button class="button bg-green-600 hover:bg-green-700" @click="gatherMaterials">
+    <button class="bg-green-600 hover:bg-green-700" @click="gatherMaterials">
       Gather Materials
     </button>
-    <button class="button bg-purple-600 hover:bg-purple-700" @click="craftItem">
+    <button class="bg-purple-600 hover:bg-purple-700" @click="craftItem">
       Craft Item
     </button>
   </div>
@@ -49,9 +49,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.button {
-  @apply text-white w-full p-4;
-}
-</style>
