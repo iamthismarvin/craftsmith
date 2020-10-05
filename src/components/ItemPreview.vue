@@ -1,14 +1,14 @@
 <template>
-  <div class="relative flex justify-center h-20 items-center w-20">
+  <div class="relative flex justify-center h-48 items-center w-48">
     <img
       :src="require(`@/assets/items/${image}`)"
       alt="item"
-      class="item-preview__image absolute bg-gray-900 border-solid rounded-md"
+      class="item-preview__image absolute bg-gray-900 border-solid h-40 rounded-sm w-40"
       :style="{ 'border-color': rarityColor }"
     />
     <div
       v-if="enchantment > 0"
-      class="item-preview__enchantment absolute bg-purple-600 flex justify-center h-6 items-center rounded-full w-6"
+      class="item-preview__enchantment absolute bg-purple-600 flex font-bold justify-center h-10 items-center rounded-full w-10"
       :style="{ 'background-color': rarityColor }"
     >
       {{ enchantment }}
@@ -65,10 +65,10 @@ export default {
 <style lang="scss" scoped>
 .item-preview {
   &__enchantment {
-    transform: translate(-1.8rem, -1.8rem);
+    transform: translate(-4.5rem, -4.5rem);
   }
   &__image {
-    border-width: 0.25rem;
+    border-width: 0.5rem;
   }
 }
 </style>

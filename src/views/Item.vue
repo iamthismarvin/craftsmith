@@ -21,7 +21,7 @@ export default {
   data: () => ({
     item: {
       enchantment: 0,
-      image: 'iron_sword.png',
+      image: 'sword.png',
       rarity: 0,
     },
   }),
