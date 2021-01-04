@@ -33,16 +33,23 @@ export default {
   methods: {
     // Make the following methods mutations and actions.
     enchantItem(currentEnchantment) {
-      console.log('Enchanting Item. There is a possibility it may fail and lower enchantment.');
-      console.log(`Your current enchantment is: +${currentEnchantment}`);
-      const probabilityTable = [10, 20, 30, 40, 50, 60, 70, 80, 90, 95];
-      const probabilityRoll = Math.floor(Math.random() * 100);
-      const enchantmentResult = probabilityRoll >= probabilityTable[currentEnchantment];
-      if (enchantmentResult) {
-        this.item.enchantment += 1;
-        console.log(`Item Enchantment Successful! Current Enchantment: +${this.item.enchantment}.`);
+      const enchantmentValidity = currentEnchantment >= 0 && currentEnchantment <= 9;
+      if (enchantmentValidity) {
+        console.log('Enchanting Item. There is a possibility it may fail and lower enchantment.');
+        console.log(`Your current enchantment is: +${currentEnchantment}`);
+        const probabilityTable = [10, 20, 30, 40, 50, 60, 70, 80, 90, 95];
+        const probabilityRoll = Math.floor(Math.random() * 100);
+        const enchantmentResult = probabilityRoll >= probabilityTable[currentEnchantment];
+        if (enchantmentResult) {
+          this.item.enchantment += 1;
+          console.log(
+            `Item Enchantment Successful! Current Enchantment: +${this.item.enchantment}.`,
+          );
+        } else {
+          console.log(`Item Enchanment Failed. Current Enchantment: +${this.item.enchantment}.`);
+        }
       } else {
-        console.log(`Item Enchanment Failed. Current Enchantment: +${this.item.enchantment}.`);
+        console.log('Further enchantment on this item is not possible.');
       }
     },
     dismantleItem() {

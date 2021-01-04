@@ -49,7 +49,7 @@ export default {
           break;
         }
         case 5: {
-          color = 'red';
+          color = '#ff0000';
           break;
         }
         default:
