@@ -32,63 +32,17 @@ export default {
   },
   methods: {
     // Make the following methods mutations and actions.
-    enchantResult(enchantmentProbability) {
-      const probability = Math.floor(Math.random() * 100);
-      const enchantmentResult = probability >= enchantmentProbability;
-      if (enchantmentResult) {
-        this.item.enchantment += 1;
-        console.log(`Item Enchantment Successful! Current Enchantment: +${this.item.enchantment}!`);
-      } else {
-        console.log(`Item Enchanment Failed. Current Enchantment: +${this.item.enchantment}.`);
-      }
-    },
     enchantItem(currentEnchantment) {
       console.log('Enchanting Item. There is a possibility it may fail and lower enchantment.');
       console.log(`Your current enchantment is: +${currentEnchantment}`);
-      switch (currentEnchantment) {
-        case 0: {
-          this.enchantResult(10);
-          break;
-        }
-        case 1: {
-          this.enchantResult(20);
-          break;
-        }
-        case 2: {
-          this.enchantResult(30);
-          break;
-        }
-        case 3: {
-          this.enchantResult(40);
-          break;
-        }
-        case 4: {
-          this.enchantResult(50);
-          break;
-        }
-        case 5: {
-          this.enchantResult(60);
-          break;
-        }
-        case 6: {
-          this.enchantResult(70);
-          break;
-        }
-        case 7: {
-          this.enchantResult(80);
-          break;
-        }
-        case 8: {
-          this.enchantResult(90);
-          break;
-        }
-        case 9: {
-          this.enchantResult(95);
-          break;
-        }
-        default:
-          console.log('Further enchantment on this item is not possible.');
-          break;
+      const probabilityTable = [10, 20, 30, 40, 50, 60, 70, 80, 90, 95];
+      const probabilityRoll = Math.floor(Math.random() * 100);
+      const enchantmentResult = probabilityRoll >= probabilityTable[currentEnchantment];
+      if (enchantmentResult) {
+        this.item.enchantment += 1;
+        console.log(`Item Enchantment Successful! Current Enchantment: +${this.item.enchantment}.`);
+      } else {
+        console.log(`Item Enchanment Failed. Current Enchantment: +${this.item.enchantment}.`);
       }
     },
     dismantleItem() {
