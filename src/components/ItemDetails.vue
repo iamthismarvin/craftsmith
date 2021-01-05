@@ -1,10 +1,10 @@
 <template>
   <div class="bg-gray-900 border-solid p-2">
     <p>
-      Name: <span class="font-bold" :style="`color: ${rarityColor}`">[{{ details.name }}]</span>
+      Name: <span class="font-bold" :style="`color: ${ratingColor}`">[{{ details.name }}]</span>
     </p>
     <p>
-      Rating: <span class="font-bold" :style="`color: ${rarityColor}`">[{{ details.rating }}]</span>
+      Rating: <span class="font-bold" :style="`color: ${ratingColor}`">[{{ details.rating }}]</span>
     </p>
     <p>Type: [{{ details.type }}]</p>
     <p v-if="details.attack">Attack: {{ details.attack.min }} ~ {{ details.attack.max }}</p>
@@ -19,7 +19,7 @@ export default {
     details: Object,
   },
   computed: {
-    rarityColor() {
+    ratingColor() {
       let color;
       switch (this.details.rating) {
         case 0: {

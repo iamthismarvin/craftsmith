@@ -4,12 +4,12 @@
       :src="require(`@/assets/items/${image}`)"
       alt="item"
       class="item-preview__image absolute bg-gray-900 border-solid h-40 rounded-sm w-40"
-      :style="{ 'border-color': rarityColor }"
+      :style="{ 'border-color': ratingColor }"
     />
     <div
       v-if="enchantment > 0"
       class="item-preview__enchantment absolute bg-purple-600 flex font-bold justify-center h-10 items-center rounded-full w-10"
-      :style="{ 'background-color': rarityColor }"
+      :style="{ 'background-color': ratingColor }"
     >
       {{ enchantment }}
     </div>
@@ -22,12 +22,12 @@ export default {
   props: {
     enchantment: Number,
     image: String,
-    rarity: Number,
+    rating: Number,
   },
   computed: {
-    rarityColor() {
+    ratingColor() {
       let color;
-      switch (this.rarity) {
+      switch (this.rating) {
         case 0: {
           color = '#4a5568';
           break;

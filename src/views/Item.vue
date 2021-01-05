@@ -1,10 +1,10 @@
 <template>
   <div class="p-2">
-    <!-- TODO: Create weapon image component. Include enchantment and rarity. -->
+    <!-- TODO: Create weapon image component. Include enchantment and rating. -->
     <ItemPreview
       :enchantment="item.enchantment"
       :image="item.image"
-      :rarity="item.rarity"
+      :rating="item.rating"
       class="flex justify-center items-center w-full"
     />
     <ItemDetails
@@ -35,7 +35,7 @@ export default {
     item: {
       enchantment: 0,
       image: 'sword.png',
-      rarity: 0,
+      rating: 0,
     },
   }),
   components: {
@@ -66,7 +66,7 @@ export default {
     },
     dismantleItem() {
       console.log('Dismantling Item. You will gain item knowledge and get back some materials.');
-      this.item.rarity += 1;
+      this.item.rating += 1;
     },
     sellItem() {
       console.log('Selling Item. Money pleeease!');
