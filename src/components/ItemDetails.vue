@@ -4,7 +4,10 @@
       Name: <span class="font-bold" :style="`color: ${ratingColor}`">[{{ details.name }}]</span>
     </p>
     <p>
-      Rating: <span class="font-bold" :style="`color: ${ratingColor}`">[{{ details.rating }}]</span>
+      Rating:
+      <span class="font-bold" :style="`color: ${ratingColor}`"
+        >[{{ getRatingName(details.rating) }}]</span
+      >
     </p>
     <p>Type: [{{ details.type }}]</p>
     <p v-if="details.attack">Attack: {{ details.attack.min }} ~ {{ details.attack.max }}</p>
@@ -51,6 +54,12 @@ export default {
           break;
       }
       return color;
+    },
+  },
+  methods: {
+    getRatingName(rating) {
+      const names = ['Common', 'Rare', 'Epic', 'Unique', 'Legendary', 'Myth'];
+      return names[rating];
     },
   },
 };
