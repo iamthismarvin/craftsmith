@@ -1,18 +1,11 @@
 <template>
-  <div class="relative flex justify-center h-48 items-center w-48">
+  <div class="item-preview">
     <img
       :src="require(`@/assets/items/${image}`)"
       alt="item"
-      class="item-preview__image absolute bg-gray-900 border-solid h-40 rounded-sm w-40"
+      class="item-preview__image bg-gray-900 border-solid h-32 md:h-48 rounded-md w-32 md:w-48"
       :style="{ 'border-color': ratingColor }"
     />
-    <div
-      v-if="enchantment > 0"
-      class="item-preview__enchantment absolute bg-purple-600 flex font-bold justify-center h-10 items-center rounded-full w-10"
-      :style="{ 'background-color': ratingColor }"
-    >
-      {{ enchantment }}
-    </div>
   </div>
 </template>
 
@@ -20,7 +13,6 @@
 export default {
   name: 'ItemPreview',
   props: {
-    enchantment: Number,
     image: String,
     rating: Number,
   },
@@ -40,9 +32,6 @@ export default {
 
 <style lang="scss" scoped>
 .item-preview {
-  &__enchantment {
-    transform: translate(-4.5rem, -4.5rem);
-  }
   &__image {
     border-width: 0.5rem;
   }

@@ -1,18 +1,15 @@
 <template>
-  <div class="p-2">
-    <!-- TODO: Create weapon image component. Include enchantment and rating. -->
-    <!-- <ItemPreview
-      :enchantment="item.enchantment"
-      :image="item.image"
-      :rating="item.rating"
-      class="flex justify-center items-center w-full"
-    /> -->
+  <div class="p-4">
     <ItemDetails :details="item" class="mb-4" />
-    <button @click="enchantItem(item.enchantment)" class="bg-purple-600 hover:bg-purple-700 mb-1">
-      Enchant
-    </button>
-    <button @click="dismantleItem" class="bg-orange-600 hover:bg-orange-700 mb-1">Dismantle</button>
-    <button @click="sellItem" class="bg-green-600 hover:bg-green-700 mb-1">Sell</button>
+    <div class="flex mb-1">
+      <button @click="enchantItem(item.enchantment)" class="bg-purple-600 hover:bg-purple-700">
+        Enchant
+      </button>
+      <button @click="dismantleItem" class="bg-orange-600 hover:bg-orange-700 mx-1">
+        Dismantle
+      </button>
+      <button @click="sellItem" class="bg-green-600 hover:bg-green-700">Sell</button>
+    </div>
   </div>
 </template>
 
@@ -26,7 +23,7 @@ export default {
       name: 'Sword of Beginnings',
       image: 'sword.png',
       rating: 0,
-      type: 'Sword (One-Handed)',
+      type: 'Sword',
       attack: { min: 100, max: 200 },
       enchantment: 0,
       description: `Every adventurer has a beginning. This sword will get you started.`,
@@ -34,7 +31,6 @@ export default {
   }),
   components: {
     ItemDetails: defineAsyncComponent(() => import('@/components/ItemDetails.vue')),
-    // ItemPreview: defineAsyncComponent(() => import('@/components/ItemPreview.vue')),
   },
   methods: {
     // Make the following methods mutations and actions.

@@ -1,28 +1,27 @@
 <template>
-  <div class="bg-gray-900 flex justify-start">
+  <div class="bg-gray-900 justify-start p-2 rounded-md">
     <ItemPreview
-      :enchantment="details.enchantment"
       :image="details.image"
       :rating="details.rating"
-      class="flex justify-center items-center w-full"
+      class="flex justify-center items-center p-4"
     />
-    <div class="p-2">
-      <p>
+    <div class="text-gray-400">
+      <div>
         Name:
         <span class="font-bold" :style="`color: ${getRatingColor(details.rating)}`"
-          >[{{ details.name }}]</span
+          >[{{ details.name }}]
+          <span v-if="details.enchantment > 0">+{{ details.enchantment }}</span></span
         >
-      </p>
-      <p>
+      </div>
+      <div>
         Rating:
         <span class="font-bold" :style="`color: ${getRatingColor(details.rating)}`"
           >[{{ getRatingName(details.rating) }}]</span
         >
-      </p>
-      <p>Type: [{{ details.type }}]</p>
-      <p v-if="details.attack">Attack: {{ details.attack.min }} ~ {{ details.attack.max }}</p>
-      <p class="italic mt-4">{{ details.description }}</p>
-      <button @click="add"></button>
+      </div>
+      <div>Type: [{{ details.type }}]</div>
+      <div v-if="details.attack">Attack: {{ details.attack.min }} ~ {{ details.attack.max }}</div>
+      <div class="italic mt-4">{{ details.description }}</div>
     </div>
   </div>
 </template>
@@ -50,5 +49,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped></style>
