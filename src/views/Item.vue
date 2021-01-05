@@ -1,23 +1,13 @@
 <template>
   <div class="p-2">
     <!-- TODO: Create weapon image component. Include enchantment and rating. -->
-    <ItemPreview
+    <!-- <ItemPreview
       :enchantment="item.enchantment"
       :image="item.image"
       :rating="item.rating"
       class="flex justify-center items-center w-full"
-    />
-    <ItemDetails
-      :details="{
-        name: 'Sword of Beginnings',
-        rating: 3,
-        type: 'Sword (One-Handed)',
-        attack: { min: 100, max: 200 },
-        enchantment: 0,
-        description: `Every adventurer has a beginning. This sword will get you started.`,
-      }"
-      class="mb-4"
-    />
+    /> -->
+    <ItemDetails :details="item" class="mb-4" />
     <button @click="enchantItem(item.enchantment)" class="bg-purple-600 hover:bg-purple-700 mb-1">
       Enchant
     </button>
@@ -33,14 +23,18 @@ export default {
   name: 'Item',
   data: () => ({
     item: {
-      enchantment: 0,
+      name: 'Sword of Beginnings',
       image: 'sword.png',
       rating: 0,
+      type: 'Sword (One-Handed)',
+      attack: { min: 100, max: 200 },
+      enchantment: 0,
+      description: `Every adventurer has a beginning. This sword will get you started.`,
     },
   }),
   components: {
     ItemDetails: defineAsyncComponent(() => import('@/components/ItemDetails.vue')),
-    ItemPreview: defineAsyncComponent(() => import('@/components/ItemPreview.vue')),
+    // ItemPreview: defineAsyncComponent(() => import('@/components/ItemPreview.vue')),
   },
   methods: {
     // Make the following methods mutations and actions.

@@ -26,37 +26,13 @@ export default {
   },
   computed: {
     ratingColor() {
-      let color;
-      switch (this.rating) {
-        case 0: {
-          color = '#4a5568';
-          break;
-        }
-        case 1: {
-          color = '#38a169';
-          break;
-        }
-        case 2: {
-          color = '#4299e1';
-          break;
-        }
-        case 3: {
-          color = '#805ad5';
-          break;
-        }
-        case 4: {
-          color = '#dd6b20';
-          break;
-        }
-        case 5: {
-          color = '#ff0000';
-          break;
-        }
-        default:
-          color = '#4a5568';
-          break;
-      }
-      return color;
+      return this.getRatingColor(this.rating);
+    },
+  },
+  methods: {
+    getRatingColor(rating) {
+      const colors = ['#ffffff', '#4299e1', '#805ad5', '#dd6b20', '#ffff00', '#ff0000'];
+      return colors[rating];
     },
   },
 };
