@@ -7,6 +7,17 @@
       :rarity="item.rarity"
       class="flex justify-center items-center w-full"
     />
+    <ItemDetails
+      :details="{
+        name: 'Sword of Beginnings',
+        rating: 3,
+        type: 'Sword (One-Handed)',
+        attack: { min: 100, max: 200 },
+        enchantment: 0,
+        description: `Every adventurer has a beginning. This sword will get you started.`,
+      }"
+      class="mb-4"
+    />
     <button @click="enchantItem(item.enchantment)" class="bg-purple-600 hover:bg-purple-700 mb-1">
       Enchant
     </button>
@@ -28,6 +39,7 @@ export default {
     },
   }),
   components: {
+    ItemDetails: defineAsyncComponent(() => import('@/components/ItemDetails.vue')),
     ItemPreview: defineAsyncComponent(() => import('@/components/ItemPreview.vue')),
   },
   methods: {
