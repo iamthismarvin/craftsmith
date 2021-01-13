@@ -50,7 +50,7 @@
         <div class="italic mt-4">{{ item.description }}</div>
       </div>
       <div class="flex my-2">
-        <button @click="enchantWeapon(item.id)" class="bg-purple-600 hover:bg-purple-700">
+        <button @click="enchantEquipment(item.id)" class="bg-purple-600 hover:bg-purple-700">
           Enchant
         </button>
         <button class="bg-orange-600 hover:bg-orange-700 mx-1">
@@ -86,7 +86,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      enchantWeapon: 'inventory/enchantWeapon',
+      enchantEquipment: 'inventory/enchantEquipment',
     }),
     toggleTab() {
       this.active = !this.active;

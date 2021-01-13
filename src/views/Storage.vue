@@ -1,7 +1,7 @@
 <template>
   <div class="p-2">
     <div>This is the Storage view.</div>
-    <ItemBlock v-for="item in weapons" :key="item.id" :item="weapons[item.id]" class="mb-2" />
+    <ItemBlock v-for="item in equipment" :key="item.id" :item="equipment[item.id]" class="mb-2" />
   </div>
 </template>
 
@@ -17,12 +17,12 @@ export default {
   },
   computed: {
     ...mapGetters({
-      weapons: 'inventory/weapons',
+      equipment: 'inventory/equipment',
     }),
   },
   mounted() {
     console.log('Asset Weapons', weapons);
-    console.log('Inventory Weapons:', this.weapons);
+    console.log('Inventory Weapons:', this.equipment);
   },
 };
 </script>
