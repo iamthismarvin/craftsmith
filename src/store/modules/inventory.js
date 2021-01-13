@@ -13,7 +13,7 @@ export default {
         rating: 4,
         type: 'Sword',
         attack: { min: 100, max: 200 },
-        enchantment: 5,
+        enchantment: 0,
         description: `Every adventurer has a beginning. This sword will get you started.`,
       },
     ],

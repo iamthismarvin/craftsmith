@@ -49,6 +49,15 @@
         <div v-if="item.attack">Attack: {{ item.attack.min }} ~ {{ item.attack.max }}</div>
         <div class="italic mt-4">{{ item.description }}</div>
       </div>
+      <div class="flex my-2">
+        <button @click="enchantWeapon(item.id)" class="bg-purple-600 hover:bg-purple-700">
+          Enchant
+        </button>
+        <button class="bg-orange-600 hover:bg-orange-700 mx-1">
+          Dismantle
+        </button>
+        <button class="bg-green-600 hover:bg-green-700">Sell</button>
+      </div>
     </div>
   </div>
 </template>
@@ -56,6 +65,7 @@
 <script>
 import { defineAsyncComponent } from 'vue';
 import ratingMixins from '@/mixins/rating';
+import { mapMutations } from 'vuex';
 
 export default {
   name: 'ItemBlock',
@@ -75,6 +85,9 @@ export default {
     },
   },
   methods: {
+    ...mapMutations({
+      enchantWeapon: 'inventory/enchantWeapon',
+    }),
     toggleTab() {
       this.active = !this.active;
     },

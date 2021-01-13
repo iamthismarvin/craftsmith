@@ -16,4 +16,14 @@ const enchantItem = targetItem => {
   return 'IDNOTAVAILABLE';
 };
 
+// dismantleItem() {
+//   console.log('Dismantling Item. You will gain item knowledge and get back some materials.');
+//   this.item.rating += 1;
+// };
+
+// sellItem() {
+//   console.log('Selling Item. Money pleeease!');
+//   this.$router.push({ name: 'Storage' });
+// };
+
 export default enchantItem;

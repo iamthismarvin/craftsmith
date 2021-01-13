@@ -7,7 +7,7 @@
 
 <script>
 import { defineAsyncComponent } from 'vue';
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters } from 'vuex';
 import weapons from '@/assets/data/weapons';
 
 export default {
@@ -20,17 +20,9 @@ export default {
       weapons: 'inventory/weapons',
     }),
   },
-  methods: {
-    ...mapMutations({
-      enchantWeapon: 'inventory/enchantWeapon',
-    }),
-  },
   mounted() {
     console.log('Asset Weapons', weapons);
     console.log('Inventory Weapons:', this.weapons[0]);
-    setTimeout(() => {
-      this.enchantWeapon(0);
-    }, 2000);
   },
 };
 </script>
