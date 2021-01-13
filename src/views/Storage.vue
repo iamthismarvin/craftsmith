@@ -1,7 +1,7 @@
 <template>
   <div class="p-2">
     <div>This is the Storage view.</div>
-    <ItemBlock :item="weapons[0]" />
+    <ItemBlock v-for="item in weapons" :key="item.id" :item="weapons[item.id]" class="mb-2" />
   </div>
 </template>
 
@@ -22,7 +22,7 @@ export default {
   },
   mounted() {
     console.log('Asset Weapons', weapons);
-    console.log('Inventory Weapons:', this.weapons[0]);
+    console.log('Inventory Weapons:', this.weapons);
   },
 };
 </script>

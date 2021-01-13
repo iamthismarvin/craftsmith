@@ -45,7 +45,7 @@
             >[{{ getRatingName(item.rating) }}]</span
           >
         </div>
-        <div>Type: [{{ item.type }}]</div>
+        <div>Type: [{{ getWeaponType(item.type) }}]</div>
         <div v-if="item.attack">Attack: {{ item.attack.min }} ~ {{ item.attack.max }}</div>
         <div class="italic mt-4">{{ item.description }}</div>
       </div>

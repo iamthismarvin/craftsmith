@@ -13,6 +13,10 @@ const ratingMixins = {
       const names = ['Common', 'Rare', 'Epic', 'Unique', 'Legendary', 'Myth'];
       return names[rating];
     },
+    getWeaponType(type) {
+      const types = ['Sword', 'Greatsword', 'Staff', 'Bow'];
+      return types[type];
+    },
   },
 };
 
