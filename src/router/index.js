@@ -32,12 +32,6 @@ const routes = [
     component: () => import('@/views/Stats.vue'),
     meta: { layout: Default },
   },
-  {
-    path: '/item',
-    name: 'Item',
-    component: () => import('@/views/Item.vue'),
-    meta: { layout: Default },
-  },
 ];
 
 const router = createRouter({

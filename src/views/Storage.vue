@@ -1,7 +1,6 @@
 <template>
   <div class="p-2">
     <div>This is the Storage view.</div>
-    <router-link :to="{ name: 'Item' }">Go to Item View</router-link>
     <ItemBlock :item="weapons[0]" />
   </div>
 </template>
