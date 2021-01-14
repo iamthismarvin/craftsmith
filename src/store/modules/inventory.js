@@ -1,4 +1,4 @@
-import enchantItem from '@/assets/data/helpers';
+import enchantItem from '@/utilities/helpers';
 import weapons from '@/assets/data/weapons';
 
 export default {
