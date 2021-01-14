@@ -1,13 +1,19 @@
 <template>
   <div class="p-2">
     <div>This is the Storage view.</div>
-    <ItemBlock v-for="item in equipment" :key="item.id" :item="equipment[item.id]" class="mb-2" />
+    <ItemBlock
+      v-for="item in equipment"
+      :key="item.id"
+      :item="equipment.find(x => x.id === item.id)"
+      class="mb-2"
+    />
+    <button @click="createEquipment(3)">Add</button>
   </div>
 </template>
 
 <script>
 import { defineAsyncComponent } from 'vue';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import weapons from '@/assets/data/weapons';
 
 export default {
@@ -18,6 +24,11 @@ export default {
   computed: {
     ...mapGetters({
       equipment: 'inventory/equipment',
+    }),
+  },
+  methods: {
+    ...mapMutations({
+      createEquipment: 'inventory/createEquipment',
     }),
   },
   mounted() {

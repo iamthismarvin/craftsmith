@@ -3,6 +3,7 @@ const weapons = [
     id: 0,
     name: 'Sword of Beginnings',
     type: 0,
+    image: 'sword.png',
     attack: {
       min: 100,
       max: 200,
@@ -13,6 +14,7 @@ const weapons = [
     id: 1,
     name: 'Greatsword of Beginnings',
     type: 1,
+    image: 'sword.png',
     attack: {
       min: 150,
       max: 250,
@@ -22,7 +24,8 @@ const weapons = [
   {
     id: 2,
     name: 'Staff of Beginnings',
-    type: 1,
+    type: 2,
+    image: 'sword.png',
     attack: {
       min: 150,
       max: 250,
@@ -32,7 +35,8 @@ const weapons = [
   {
     id: 3,
     name: 'Bow of Beginnings',
-    type: 1,
+    type: 3,
+    image: 'sword.png',
     attack: {
       min: 100,
       max: 200,

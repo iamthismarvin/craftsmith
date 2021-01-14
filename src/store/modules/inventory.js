@@ -1,4 +1,5 @@
 import enchantItem from '@/assets/data/helpers';
+import weapons from '@/assets/data/weapons';
 
 export default {
   namespaced: true,
@@ -36,6 +37,15 @@ export default {
     },
   },
   mutations: {
+    createEquipment(state, itemId) {
+      const baseEquipment = weapons.find(item => item.id === itemId);
+      const newEquipment = { ...baseEquipment };
+      newEquipment.id = 2;
+      newEquipment.rating = 0;
+      newEquipment.enchantment = 0;
+      state.equipment.push(newEquipment);
+      console.log('Equipment Updated: ', state.equipment);
+    },
     enchantEquipment(state, id) {
       const targetItem = state.equipment.find(item => item.id === id);
       const enchantment = enchantItem(targetItem);
