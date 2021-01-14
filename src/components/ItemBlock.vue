@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div v-if="item">
     <div
       @click="toggleTab"
       class="bg-gray-900 cursor-pointer flex h-16 items-center justify-between p-2 rounded-md text-gray-300"
     >
       <div class="flex mr-2">
         <img src="#" alt="image" class="mr-2" />
-        <div class="font-bold" :style="{ color: ratingColor }">
+        <div class="font-bold" :style="{ color: getRatingColor(item.rating) }">
           {{ item.name }} + {{ item.enchantment }}
         </div>
       </div>
