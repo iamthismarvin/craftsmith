@@ -50,7 +50,7 @@
         <div class="italic mt-4">{{ item.description }}</div>
       </div>
       <div class="flex my-2">
-        <button @click="enchantEquipment(item.id)" class="bg-purple-600 hover:bg-purple-700">
+        <button @click="enchantEquipment" class="bg-purple-600 hover:bg-purple-700">
           Enchant
         </button>
         <button class="bg-orange-600 hover:bg-orange-700 mx-1">
@@ -64,14 +64,15 @@
 
 <script>
 import { defineAsyncComponent } from 'vue';
+import { enchantItem } from '@/utilities/database';
 import ratingMixins from '@/mixins/rating';
-import { mapMutations } from 'vuex';
 
 export default {
   name: 'ItemBlock',
   props: {
     item: Object,
   },
+  emits: ['enchanted'],
   mixins: [ratingMixins],
   components: {
     ItemPreview: defineAsyncComponent(() => import('@/components/ItemPreview.vue')),
@@ -85,9 +86,10 @@ export default {
     },
   },
   methods: {
-    ...mapMutations({
-      enchantEquipment: 'inventory/enchantEquipment',
-    }),
+    enchantEquipment() {
+      enchantItem(this.item.id);
+      this.$emit('enchanted');
+    },
     toggleTab() {
       this.active = !this.active;
     },

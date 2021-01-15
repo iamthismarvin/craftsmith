@@ -1,7 +1,13 @@
 <template>
   <div class="p-2">
     <div>This is the Storage view.</div>
-    <ItemBlock v-for="item in inventory" :key="item.id" :item="getItemData(item)" class="mb-2" />
+    <ItemBlock
+      v-for="item in inventory"
+      v-on:enchanted="updateInventory"
+      :key="item.id"
+      :item="getItemData(item)"
+      class="mb-2"
+    />
     <button @click="addWeapon">Add</button>
   </div>
 </template>
@@ -9,8 +15,8 @@
 <script>
 import { defineAsyncComponent } from 'vue';
 import { mapGetters, mapMutations } from 'vuex';
+import { createWeapon } from '@/utilities/database';
 import db from '@/database';
-import createWeapon from '@/utilities/database';
 import ratingMixins from '@/mixins/rating';
 
 export default {
