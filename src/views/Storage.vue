@@ -3,7 +3,7 @@
     <div>This is the Storage view.</div>
     <ItemBlock
       v-for="item in inventory"
-      v-on:enchanted="updateInventory"
+      v-on:enchanted="UPDATE_INVENTORY"
       :key="item.id"
       :item="getItemData(item)"
       class="mb-2"
@@ -16,37 +16,30 @@
 import { defineAsyncComponent } from 'vue';
 import { mapGetters, mapMutations } from 'vuex';
 import { createWeapon } from '@/utilities/database';
-import db from '@/database';
 import helpers from '@/mixins/helpers';
 
 export default {
   name: 'Storage',
   mixins: [helpers],
-  data: () => ({
-    inventory: null,
-  }),
   components: {
     ItemBlock: defineAsyncComponent(() => import('@/components/ItemBlock.vue')),
   },
   computed: {
     ...mapGetters({
-      equipment: 'inventory/equipment',
+      inventory: 'inventory/inventory',
     }),
   },
   methods: {
     ...mapMutations({
-      createEquipment: 'inventory/createEquipment',
+      UPDATE_INVENTORY: 'inventory/UPDATE_INVENTORY',
     }),
     addWeapon() {
       createWeapon();
-      this.updateInventory();
-    },
-    async updateInventory() {
-      this.inventory = await db.inventory.toArray();
+      this.UPDATE_INVENTORY();
     },
   },
   created() {
-    this.updateInventory();
+    this.UPDATE_INVENTORY();
   },
 };
 </script>
