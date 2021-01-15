@@ -14,7 +14,7 @@
 
 <script>
 import { defineAsyncComponent } from 'vue';
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import { createWeapon } from '@/utilities/database';
 import helpers from '@/mixins/helpers';
 
@@ -30,7 +30,7 @@ export default {
     }),
   },
   methods: {
-    ...mapMutations({
+    ...mapActions({
       UPDATE_INVENTORY: 'inventory/UPDATE_INVENTORY',
     }),
     addWeapon() {

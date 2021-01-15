@@ -9,8 +9,13 @@ export default {
     },
   },
   mutations: {
-    async UPDATE_INVENTORY(state) {
-      state.inventory = await db.inventory.toArray();
+    UPDATE_INVENTORY_STATE(state, payload) {
+      state.inventory = payload;
+    },
+  },
+  actions: {
+    async UPDATE_INVENTORY({ commit }) {
+      commit('UPDATE_INVENTORY_STATE', await db.inventory.toArray());
     },
   },
 };
