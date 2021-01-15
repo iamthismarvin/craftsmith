@@ -1,3 +1,5 @@
+import weapons from '@/assets/data/weapons';
+
 const ratingMixins = {
   methods: {
     getRatingColor(rating) {
@@ -11,6 +13,21 @@ const ratingMixins = {
     getWeaponType(type) {
       const types = ['Sword', 'Greatsword', 'Staff', 'Bow'];
       return types[type];
+    },
+    getItemData(item) {
+      const assetItem = weapons.find(weapon => weapon.id === item.baseItem);
+      const itemData = {
+        id: item.id,
+        enchantment: item.enchantment,
+        rating: item.rating,
+        name: assetItem.name,
+        itemType: assetItem.itemType,
+        type: assetItem.type,
+        image: assetItem.image,
+        attack: assetItem.attack,
+        description: assetItem.description,
+      };
+      return itemData;
     },
   },
 };
