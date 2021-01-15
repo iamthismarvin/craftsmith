@@ -17,11 +17,11 @@ import { defineAsyncComponent } from 'vue';
 import { mapGetters, mapMutations } from 'vuex';
 import { createWeapon } from '@/utilities/database';
 import db from '@/database';
-import ratingMixins from '@/mixins/rating';
+import helpers from '@/mixins/helpers';
 
 export default {
   name: 'Storage',
-  mixins: [ratingMixins],
+  mixins: [helpers],
   data: () => ({
     inventory: null,
   }),

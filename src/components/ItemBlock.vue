@@ -65,15 +65,15 @@
 <script>
 import { defineAsyncComponent } from 'vue';
 import { enchantItem } from '@/utilities/database';
-import ratingMixins from '@/mixins/rating';
+import helpers from '@/mixins/helpers';
 
 export default {
   name: 'ItemBlock',
   props: {
     item: Object,
   },
+  mixins: [helpers],
   emits: ['enchanted'],
-  mixins: [ratingMixins],
   components: {
     ItemPreview: defineAsyncComponent(() => import('@/components/ItemPreview.vue')),
   },

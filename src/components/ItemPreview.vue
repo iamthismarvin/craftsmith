@@ -10,15 +10,15 @@
 </template>
 
 <script>
-import ratingMixins from '@/mixins/rating';
+import helpers from '@/mixins/helpers';
 
 export default {
   name: 'ItemPreview',
-  mixins: [ratingMixins],
   props: {
     image: String,
     rating: Number,
   },
+  mixins: [helpers],
 };
 </script>
 

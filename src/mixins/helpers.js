@@ -1,6 +1,6 @@
 import weapons from '@/assets/data/weapons';
 
-const ratingMixins = {
+const helpers = {
   methods: {
     getRatingColor(rating) {
       const colors = ['#ffffff', '#4299e1', '#805ad5', '#dd6b20', '#ffff00', '#ff0000'];
@@ -32,4 +32,4 @@ const ratingMixins = {
   },
 };
 
-export default ratingMixins;
+export default helpers;
