@@ -10,6 +10,7 @@ const weapons = [
       max: 200,
     },
     description: `Every adventurer has a beginning. This sword will get you started.`,
+    materials: {},
   },
   {
     id: 1,
@@ -22,6 +23,7 @@ const weapons = [
       max: 250,
     },
     description: `Every adventurer has a beginning. This greatsword will get you started.`,
+    materials: {},
   },
   {
     id: 2,
@@ -34,6 +36,7 @@ const weapons = [
       max: 250,
     },
     description: `Every adventurer has a beginning. This staff will get you started.`,
+    materials: {},
   },
   {
     id: 3,
@@ -46,6 +49,7 @@ const weapons = [
       max: 200,
     },
     description: `Every adventurer has a beginning. This bow will get you started.`,
+    materials: {},
   },
 ];
 
