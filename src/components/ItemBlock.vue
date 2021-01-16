@@ -64,6 +64,7 @@
 
 <script>
 import { defineAsyncComponent } from 'vue';
+import { mapActions } from 'vuex';
 import { enchantItem } from '@/utilities/database';
 import helpers from '@/mixins/helpers';
 
@@ -85,8 +86,27 @@ export default {
     },
   },
   methods: {
-    enchantEquipment() {
-      enchantItem(this.item.id);
+    ...mapActions({
+      CREATE_LOG_ENTRY: 'log/CREATE_LOG_ENTRY',
+    }),
+    async enchantEquipment() {
+      const result = await enchantItem(this.item.id);
+      switch (result) {
+        case 'ESUCCESS':
+          this.CREATE_LOG_ENTRY(
+            `Successfuly enchanted ${this.item.name} to +${this.item.enchantment}.`,
+          );
+          break;
+        case 'EFAILURE':
+          this.CREATE_LOG_ENTRY(`Failed to enchant ${this.item.name}.`);
+          break;
+        case 'EMAX':
+          this.CREATE_LOG_ENTRY(`${this.item.name} has reached max enchantment.`);
+          break;
+        default:
+          this.CREATE_LOG_ENTRY(`Error: result = ${result}`);
+          break;
+      }
     },
     toggleTab() {
       this.active = !this.active;
