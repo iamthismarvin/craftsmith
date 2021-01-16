@@ -1,30 +1,12 @@
 <template>
   <div v-if="item">
-    <div
-      @click="toggleTab"
-      class="bg-gray-900 cursor-pointer flex h-16 items-center justify-between p-2 rounded-md text-gray-300"
-    >
-      <div class="flex mr-2">
-        <img src="#" alt="image" class="mr-2" />
-        <div class="font-bold" :style="{ color: getRatingColor(item.rating) }">
-          {{ item.name }} + {{ item.enchantment }}
-        </div>
-      </div>
-      <svg
-        class="h-6 w-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          :d="toggleImage"
-        ></path>
-      </svg>
-    </div>
+    <ItemBlockTab
+      v-on:toggle="toggleDetails"
+      :name="item.name"
+      :enchantment="item.enchantment"
+      :rating="item.rating"
+      :active="active"
+    />
     <div v-if="active" class="bg-gray-900 justify-start p-2 mt-2 rounded-md">
       <ItemPreview
         :image="item.image"
@@ -75,16 +57,12 @@ export default {
   },
   mixins: [helpers],
   components: {
+    ItemBlockTab: defineAsyncComponent(() => import('@/components/ItemBlockTab')),
     ItemPreview: defineAsyncComponent(() => import('@/components/ItemPreview.vue')),
   },
   data: () => ({
     active: false,
   }),
-  computed: {
-    toggleImage() {
-      return this.active ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7';
-    },
-  },
   methods: {
     ...mapActions({
       CREATE_LOG_ENTRY: 'log/CREATE_LOG_ENTRY',
@@ -108,7 +86,7 @@ export default {
           break;
       }
     },
-    toggleTab() {
+    toggleDetails() {
       this.active = !this.active;
     },
   },
