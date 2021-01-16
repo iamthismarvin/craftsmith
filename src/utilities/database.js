@@ -1,12 +1,18 @@
 import db from '@/database';
+import createStore from '@/store/index';
 
-const createWeapon = () => {
-  db.inventory.add({
+const updateInventory = async () => {
+  await createStore.dispatch('inventory/UPDATE_INVENTORY');
+};
+
+const createWeapon = async () => {
+  await db.inventory.add({
     baseItem: 2,
     enchantment: 0,
     rating: 0,
     skills: [],
   });
+  await updateInventory();
 };
 
 const enchantItem = async id => {
@@ -20,6 +26,7 @@ const enchantItem = async id => {
     if (enchantmentResult) {
       const newEnchantment = currentEnchantment + 1;
       await db.inventory.update(id, { enchantment: newEnchantment });
+      await updateInventory();
       return 'ESUCCESS';
     }
     return 'EFAILURE';

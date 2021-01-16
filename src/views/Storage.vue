@@ -1,7 +1,7 @@
 <template>
   <div class="p-2">
     <div>This is the Storage view.</div>
-    <ItemBlock v-for="item in inventory" :key="item.id" :item="item" class="mb-2" />
+    <ItemBlock v-for="item in items" :key="item.id" :item="item" class="mb-2" />
     <button @click="addWeapon">Add</button>
   </div>
 </template>
@@ -20,12 +20,10 @@ export default {
   },
   computed: {
     ...mapGetters({
-      inventoryState: 'inventory/inventory',
+      inventory: 'inventory/inventory',
     }),
-    inventory() {
-      // ! OVERHEATS THE CPU
-      // this.UPDATE_INVENTORY();
-      return this.inventoryState.map(item => this.getItemData(item));
+    items() {
+      return this.inventory.map(item => this.getItemData(item));
     },
   },
   methods: {
@@ -35,6 +33,9 @@ export default {
     addWeapon() {
       createWeapon();
     },
+  },
+  created() {
+    this.UPDATE_INVENTORY();
   },
 };
 </script>
