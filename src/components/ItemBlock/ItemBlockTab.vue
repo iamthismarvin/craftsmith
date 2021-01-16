@@ -3,8 +3,8 @@
     @click="toggleTab"
     class="bg-gray-900 cursor-pointer flex h-16 items-center justify-between p-2 rounded-md text-gray-300"
   >
-    <div class="flex mr-2">
-      <img src="#" alt="image" class="mr-2" />
+    <div class="flex items-center mr-2">
+      <ItemPreview :image="image" :rating="rating" size="small" class="mr-2" />
       <div class="font-bold" :style="{ color: getRatingColor(rating) }">
         {{ name }} + {{ enchantment }}
       </div>
@@ -23,6 +23,7 @@
 
 <script>
 import helpers from '@/mixins/helpers';
+import { defineAsyncComponent } from 'vue';
 
 export default {
   name: 'ItemBlockTab',
@@ -30,10 +31,14 @@ export default {
     name: String,
     enchantment: Number,
     rating: Number,
+    image: String,
     active: Boolean,
   },
   mixins: [helpers],
   emits: ['toggle'],
+  components: {
+    ItemPreview: defineAsyncComponent(() => import('@/components/ItemPreview.vue')),
+  },
   computed: {
     toggleImage() {
       return this.active ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7';

@@ -5,6 +5,7 @@
       :name="item.name"
       :enchantment="item.enchantment"
       :rating="item.rating"
+      :image="item.image"
       :active="active"
     />
     <ItemBlockDetails v-if="active" :item="item" class="mt-2" />
