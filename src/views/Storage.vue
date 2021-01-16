@@ -1,6 +1,5 @@
 <template>
   <div class="p-2">
-    <div>This is the Storage view.</div>
     <ItemBlock v-for="item in items" :key="item.id" :item="item" class="mb-2" />
     <button @click="addWeapon">Add</button>
   </div>

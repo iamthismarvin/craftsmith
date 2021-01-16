@@ -1,6 +1,5 @@
 <template>
   <div class="text-white p-2">
-    <Activity class="px-2 my-2" :entries="log" />
     <div class="flex flex-col just justify-center items-center">
       <h1 class="font-bold">Inventory</h1>
       <p>Materials: {{ inventory.materials }}</p>
@@ -16,7 +15,6 @@
 </template>
 
 <script>
-import { defineAsyncComponent } from 'vue';
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
@@ -27,9 +25,6 @@ export default {
       materials: 0,
     },
   }),
-  components: {
-    Activity: defineAsyncComponent(() => import('@/components/Activity.vue')),
-  },
   computed: {
     ...mapGetters({
       log: 'log/log',
