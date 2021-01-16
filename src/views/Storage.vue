@@ -15,7 +15,7 @@ export default {
   name: 'Storage',
   mixins: [helpers],
   components: {
-    ItemBlock: defineAsyncComponent(() => import('@/components/ItemBlock.vue')),
+    ItemBlock: defineAsyncComponent(() => import('@/components/ItemBlock/ItemBlock.vue')),
   },
   computed: {
     ...mapGetters({
