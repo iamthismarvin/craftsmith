@@ -17,11 +17,11 @@
 
 <script>
 import { defineAsyncComponent } from 'vue';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'Home',
   data: () => ({
-    log: [],
     inventory: {
       items: 0,
       materials: 0,
@@ -30,20 +30,28 @@ export default {
   components: {
     Activity: defineAsyncComponent(() => import('@/components/Activity.vue')),
   },
+  computed: {
+    ...mapGetters({
+      log: 'log/log',
+    }),
+  },
   methods: {
+    ...mapActions({
+      CREATE_LOG_ENTRY: 'log/CREATE_LOG_ENTRY',
+    }),
     gatherMaterials() {
       const materials = Math.floor(Math.random() * 25);
       this.inventory.materials += materials;
-      this.log.push(`You gathered ${materials} materials!`);
+      this.CREATE_LOG_ENTRY(`You gathered ${materials} materials!`);
     },
     craftItem() {
       const requiredMaterials = 25;
       if (this.inventory.materials >= requiredMaterials) {
         this.inventory.materials -= requiredMaterials;
         this.inventory.items += 1;
-        this.log.push('You crafted an item!');
+        this.CREATE_LOG_ENTRY('You crafted an item!');
       } else {
-        this.log.push('Insufficient materials to craft item.');
+        this.CREATE_LOG_ENTRY('Insufficient materials to craft item.');
       }
     },
   },
