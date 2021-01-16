@@ -1,13 +1,7 @@
 <template>
   <div class="p-2">
     <div>This is the Storage view.</div>
-    <ItemBlock
-      v-for="item in inventory"
-      v-on:enchanted="UPDATE_INVENTORY"
-      :key="item.id"
-      :item="getItemData(item)"
-      class="mb-2"
-    />
+    <ItemBlock v-for="item in inventory" :key="item.id" :item="item" class="mb-2" />
     <button @click="addWeapon">Add</button>
   </div>
 </template>
@@ -26,8 +20,12 @@ export default {
   },
   computed: {
     ...mapGetters({
-      inventory: 'inventory/inventory',
+      inventoryState: 'inventory/inventory',
     }),
+    inventory() {
+      this.UPDATE_INVENTORY();
+      return this.inventoryState.map(item => this.getItemData(item));
+    },
   },
   methods: {
     ...mapActions({
@@ -35,11 +33,7 @@ export default {
     }),
     addWeapon() {
       createWeapon();
-      this.UPDATE_INVENTORY();
     },
-  },
-  created() {
-    this.UPDATE_INVENTORY();
   },
 };
 </script>

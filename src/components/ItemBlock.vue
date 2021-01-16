@@ -73,7 +73,6 @@ export default {
     item: Object,
   },
   mixins: [helpers],
-  emits: ['enchanted'],
   components: {
     ItemPreview: defineAsyncComponent(() => import('@/components/ItemPreview.vue')),
   },
@@ -88,7 +87,6 @@ export default {
   methods: {
     enchantEquipment() {
       enchantItem(this.item.id);
-      this.$emit('enchanted');
     },
     toggleTab() {
       this.active = !this.active;
