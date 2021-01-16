@@ -23,7 +23,8 @@ export default {
       inventoryState: 'inventory/inventory',
     }),
     inventory() {
-      this.UPDATE_INVENTORY();
+      // ! OVERHEATS THE CPU
+      // this.UPDATE_INVENTORY();
       return this.inventoryState.map(item => this.getItemData(item));
     },
   },
