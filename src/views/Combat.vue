@@ -1,11 +1,11 @@
 <template>
   <div>
-    This is the Gather view.
+    This is the Combat view.
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Gather',
+  name: 'Combat',
 };
 </script>

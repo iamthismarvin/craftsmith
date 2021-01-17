@@ -9,15 +9,15 @@ const routes = [
     meta: { layout: Default },
   },
   {
-    path: '/craft',
-    name: 'Craft',
-    component: () => import('@/views/Craft.vue'),
+    path: '/combat',
+    name: 'Combat',
+    component: () => import('@/views/Combat.vue'),
     meta: { layout: Default },
   },
   {
-    path: '/gather',
-    name: 'Gather',
-    component: () => import('@/views/Gather.vue'),
+    path: '/craft',
+    name: 'Craft',
+    component: () => import('@/views/Craft.vue'),
     meta: { layout: Default },
   },
   {
