@@ -6,7 +6,7 @@
     <div class="flex items-center mr-2">
       <ItemPreview :image="image" :rating="rating" size="small" class="mr-2" />
       <div class="font-bold" :style="{ color: getRatingColor(rating) }">
-        {{ name }} + {{ enchantment }}
+        {{ name }} <span v-if="enchantment > 0">+{{ enchantment }}</span>
       </div>
     </div>
     <svg
