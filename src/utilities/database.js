@@ -1,4 +1,4 @@
-import db from '@/database';
+import { db } from '@/database';
 import createStore from '@/store/index';
 import weapons from '@/assets/data/weapons';
 import { generateRating } from '@/utilities/generator';
