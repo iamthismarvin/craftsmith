@@ -8,7 +8,6 @@ export interface Item {
 interface Attack {
   min: number;
   max: number;
-  speed: number;
 }
 
 export interface Weapon {
@@ -19,7 +18,6 @@ export interface Weapon {
   image: string;
   attack: Attack;
   description: string;
-  materials: number[];
 }
 
 export interface Database {
