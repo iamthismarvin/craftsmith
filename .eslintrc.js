@@ -3,10 +3,10 @@ module.exports = {
   env: {
     node: true,
   },
-  extends: ['plugin:vue/vue3-essential', '@vue/airbnb', '@vue/prettier'],
+  extends: ['plugin:vue/vue3-essential', '@vue/airbnb', '@vue/prettier', '@vue/typescript'],
   plugins: ['vue', 'prettier'],
   parserOptions: {
-    parser: 'babel-eslint',
+    parser: '@typescript-eslint/parser',
   },
   rules: {
     'prettier/prettier': ['error'],
