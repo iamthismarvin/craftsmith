@@ -67,6 +67,9 @@ export default {
         case 'EMAX':
           this.CREATE_LOG_ENTRY(`${this.item.name} has reached max enchantment.`);
           break;
+        case 'IDNOTFOUND':
+          this.CREATE_LOG_ENTRY(`Item not found.`);
+          break;
         default:
           this.CREATE_LOG_ENTRY(`Error: result = ${result}`);
           break;

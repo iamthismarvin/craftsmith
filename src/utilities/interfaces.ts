@@ -28,7 +28,7 @@ export interface Database {
 }
 
 export interface InventoryDB {
-  id: number;
+  id?: number;
   baseItem: number;
   enchantment: number;
   rating: number;
