@@ -41,13 +41,13 @@ import { enchantItem } from '@/utilities/database';
 import helpers from '@/mixins/helpers';
 
 export default {
-  name: 'ItemBlockDetails',
+  name: 'ItemDetails',
   props: {
     item: Object,
   },
   mixins: [helpers],
   components: {
-    ItemPreview: defineAsyncComponent(() => import('@/components/ItemPreview.vue')),
+    ItemPreview: defineAsyncComponent(() => import('@/components/Item/ItemPreview.vue')),
   },
   methods: {
     ...mapActions({

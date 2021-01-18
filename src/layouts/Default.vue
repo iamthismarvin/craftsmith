@@ -17,7 +17,7 @@ export default {
   name: 'Default',
   components: {
     Activity: defineAsyncComponent(() => import('@/components/Activity.vue')),
-    Menu: defineAsyncComponent(() => import('@/components/Menu.vue')),
+    Menu: defineAsyncComponent(() => import('@/components/Menu/Menu.vue')),
     Navigation: defineAsyncComponent(() => import('@/components/Navigation.vue')),
   },
   computed: {
