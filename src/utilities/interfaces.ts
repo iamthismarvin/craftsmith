@@ -20,9 +20,15 @@ export interface Weapon {
   description: string;
 }
 
-export interface Database {
-  inventory: any;
-  version: any;
+export interface CombatState {
+  health: number;
+  ready: boolean;
+  weapon: Weapon;
+}
+
+export interface State {
+  player: CombatState;
+  enemy: CombatState;
 }
 
 export interface InventoryDB {
