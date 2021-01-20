@@ -2,6 +2,7 @@
   <div>
     <h3>Health: {{ player.health }}</h3>
     <h3>Enemy Health: {{ enemy.health }}</h3>
+    <h3>Location: {{ location }}</h3>
   </div>
 </template>
 
@@ -12,6 +13,7 @@ export default {
   name: 'Combat',
   computed: {
     ...mapGetters({
+      location: 'combat/location',
       player: 'combat/player',
       enemy: 'combat/enemy',
     }),
@@ -20,11 +22,13 @@ export default {
     ...mapActions({
       RESET_PLAYER_STATE: 'combat/RESET_PLAYER_STATE',
       RESET_ENEMY_STATE: 'combat/RESET_ENEMY_STATE',
+      SET_LOCATION: 'combat/SET_LOCATION',
     }),
   },
   mounted() {
     this.RESET_PLAYER_STATE();
     this.RESET_ENEMY_STATE();
+    this.SET_LOCATION(100);
   },
 };
 </script>

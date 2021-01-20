@@ -27,6 +27,7 @@ export interface CombatState {
 }
 
 export interface State {
+  location: number;
   player: CombatState;
   enemy: CombatState;
 }
