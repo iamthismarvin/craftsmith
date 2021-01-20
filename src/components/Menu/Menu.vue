@@ -25,7 +25,7 @@ import { defineAsyncComponent } from 'vue';
 export default {
   name: 'Menu',
   components: {
-    MenuItem: defineAsyncComponent(() => import('@/components/MenuItem.vue')),
+    MenuItem: defineAsyncComponent(() => import('@/components/Menu/MenuItem.vue')),
   },
 };
 </script>

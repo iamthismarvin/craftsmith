@@ -1,6 +1,6 @@
 <template>
   <div class="px-2">
-    <ItemBlock v-for="item in items" :key="item.id" :item="item" class="mb-2" />
+    <Item v-for="item in items" :key="item.id" :item="item" class="mb-2" />
     <button @click="addWeapon">Add</button>
   </div>
 </template>
@@ -15,7 +15,7 @@ export default {
   name: 'Storage',
   mixins: [helpers],
   components: {
-    ItemBlock: defineAsyncComponent(() => import('@/components/ItemBlock/ItemBlock.vue')),
+    Item: defineAsyncComponent(() => import('@/components/Item/Item.vue')),
   },
   computed: {
     ...mapGetters({

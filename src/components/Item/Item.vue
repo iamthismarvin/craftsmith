@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ItemBlockTab
+    <ItemTab
       v-on:toggle="toggleDetails"
       :name="item.name"
       :enchantment="item.enchantment"
@@ -8,7 +8,7 @@
       :image="item.image"
       :active="active"
     />
-    <ItemBlockDetails v-if="active" :item="item" class="mt-2" />
+    <ItemDetails v-if="active" :item="item" class="mt-2" />
   </div>
 </template>
 
@@ -17,14 +17,14 @@ import { defineAsyncComponent } from 'vue';
 import helpers from '@/mixins/helpers';
 
 export default {
-  name: 'ItemBlock',
+  name: 'Item',
   props: {
     item: Object,
   },
   mixins: [helpers],
   components: {
-    ItemBlockDetails: defineAsyncComponent(() => import('@/components/ItemBlock/ItemBlockDetails')),
-    ItemBlockTab: defineAsyncComponent(() => import('@/components/ItemBlock/ItemBlockTab')),
+    ItemDetails: defineAsyncComponent(() => import('@/components/Item/ItemDetails.vue')),
+    ItemTab: defineAsyncComponent(() => import('@/components/Item/ItemTab.vue')),
   },
   data: () => ({
     active: false,

@@ -26,7 +26,7 @@ import helpers from '@/mixins/helpers';
 import { defineAsyncComponent } from 'vue';
 
 export default {
-  name: 'ItemBlockTab',
+  name: 'ItemTab',
   props: {
     name: String,
     enchantment: Number,
@@ -37,7 +37,7 @@ export default {
   mixins: [helpers],
   emits: ['toggle'],
   components: {
-    ItemPreview: defineAsyncComponent(() => import('@/components/ItemPreview.vue')),
+    ItemPreview: defineAsyncComponent(() => import('@/components/Item/ItemPreview.vue')),
   },
   computed: {
     toggleImage() {

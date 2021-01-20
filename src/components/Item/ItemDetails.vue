@@ -41,13 +41,13 @@ import { enchantItem } from '@/utilities/database';
 import helpers from '@/mixins/helpers';
 
 export default {
-  name: 'ItemBlockDetails',
+  name: 'ItemDetails',
   props: {
     item: Object,
   },
   mixins: [helpers],
   components: {
-    ItemPreview: defineAsyncComponent(() => import('@/components/ItemPreview.vue')),
+    ItemPreview: defineAsyncComponent(() => import('@/components/Item/ItemPreview.vue')),
   },
   methods: {
     ...mapActions({
@@ -66,6 +66,9 @@ export default {
           break;
         case 'EMAX':
           this.CREATE_LOG_ENTRY(`${this.item.name} has reached max enchantment.`);
+          break;
+        case 'IDNOTFOUND':
+          this.CREATE_LOG_ENTRY(`Item not found.`);
           break;
         default:
           this.CREATE_LOG_ENTRY(`Error: result = ${result}`);
