@@ -1,4 +1,4 @@
-import { CombatState, State } from '@/utilities/interfaces';
+import { CombatState, CombatantState } from '@/utilities/interfaces';
 
 const resetStateValues = {
   health: 100,
@@ -23,17 +23,17 @@ export default {
   },
   getters: {
     location: (state: { location: number }) => state.location,
-    player: (state: { player: CombatState }) => state.player,
-    enemy: (state: { enemy: CombatState }) => state.enemy,
+    player: (state: { player: CombatantState }) => state.player,
+    enemy: (state: { enemy: CombatantState }) => state.enemy,
   },
   mutations: {
-    RESET_PLAYER_STATE: (state: State, payload: CombatState) => {
+    RESET_PLAYER_STATE: (state: CombatState, payload: CombatantState) => {
       state.player = payload;
     },
-    RESET_ENEMY_STATE: (state: State, payload: CombatState) => {
+    RESET_ENEMY_STATE: (state: CombatState, payload: CombatantState) => {
       state.enemy = payload;
     },
-    SET_LOCATION: (state: State, payload: number) => {
+    SET_LOCATION: (state: CombatState, payload: number) => {
       state.location = payload;
     },
   },

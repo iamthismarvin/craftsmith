@@ -25,6 +25,12 @@ export interface Weapon {
 // STATE
 
 export interface CombatState {
+  location: number;
+  player: CombatantState;
+  enemy: CombatantState;
+}
+
+export interface CombatantState {
   health: number;
   ready: boolean;
   weapon: Weapon;
@@ -46,12 +52,6 @@ export interface InventoryState {
 
 export interface ItemsState {
   inventory: Item[];
-}
-
-export interface State {
-  location: number;
-  player: CombatState;
-  enemy: CombatState;
 }
 
 // DATABASE
