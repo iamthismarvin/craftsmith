@@ -54,6 +54,10 @@ export interface ItemsState {
   inventory: Item[];
 }
 
+export interface LogState {
+  log: string[];
+}
+
 // DATABASE
 
 export interface InventoryDB {
