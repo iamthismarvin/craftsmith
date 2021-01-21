@@ -1,5 +1,5 @@
 import { db } from '@/database';
-import { EquipmentState, InventoryState, ItemsState } from '@/utilities/interfaces';
+import { InventoryState, ItemsState } from '@/utilities/interfaces';
 
 export default {
   namespaced: true,
@@ -15,8 +15,8 @@ export default {
     inventory: [],
   },
   getters: {
-    equipment: (state: { equipment: EquipmentState }) => state.equipment,
-    inventory: (state: { inventory: ItemsState }) => state.inventory,
+    equipment: (state: InventoryState) => state.equipment,
+    inventory: (state: InventoryState) => state.inventory,
   },
   mutations: {
     UPDATE_INVENTORY_STATE(state: InventoryState, payload: ItemsState) {

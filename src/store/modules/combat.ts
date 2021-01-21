@@ -22,9 +22,9 @@ export default {
     },
   },
   getters: {
-    location: (state: { location: number }) => state.location,
-    player: (state: { player: CombatantState }) => state.player,
-    enemy: (state: { enemy: CombatantState }) => state.enemy,
+    location: (state: CombatState) => state.location,
+    player: (state: CombatState) => state.player,
+    enemy: (state: CombatState) => state.enemy,
   },
   mutations: {
     RESET_PLAYER_STATE: (state: CombatState, payload: CombatantState) => {
