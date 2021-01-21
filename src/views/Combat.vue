@@ -20,14 +20,12 @@ export default {
   },
   methods: {
     ...mapActions({
-      RESET_PLAYER_STATE: 'combat/RESET_PLAYER_STATE',
-      RESET_ENEMY_STATE: 'combat/RESET_ENEMY_STATE',
+      SET_COMBAT_STATE: 'combat/SET_COMBAT_STATE',
       SET_LOCATION: 'combat/SET_LOCATION',
     }),
   },
   mounted() {
-    this.RESET_PLAYER_STATE();
-    this.RESET_ENEMY_STATE();
+    this.SET_COMBAT_STATE();
     this.SET_LOCATION(100);
   },
 };

@@ -1,11 +1,5 @@
 import { CombatState, Combatant } from '@/utilities/interfaces';
 
-const resetStateValues = {
-  health: 100,
-  ready: true,
-  weapon: 0,
-};
-
 export default {
   namespaced: true,
   state: {
@@ -27,22 +21,32 @@ export default {
     enemy: (state: CombatState) => state.enemy,
   },
   mutations: {
-    RESET_PLAYER_STATE: (state: CombatState, payload: Combatant) => {
-      state.player = payload;
-    },
-    RESET_ENEMY_STATE: (state: CombatState, payload: Combatant) => {
+    SET_ENEMY_STATE: (state: CombatState, payload: Combatant) => {
       state.enemy = payload;
+    },
+    SET_PLAYER_STATE: (state: CombatState, payload: Combatant) => {
+      state.player = payload;
     },
     SET_LOCATION: (state: CombatState, payload: number) => {
       state.location = payload;
     },
   },
   actions: {
-    RESET_PLAYER_STATE({ commit }: { commit: Function }) {
-      commit('RESET_PLAYER_STATE', resetStateValues);
+    SET_COMBAT_STATE({ commit }: { commit: Function }) {
+      const resetCombatant = {
+        health: 100,
+        ready: true,
+        weapon: 0,
+      };
+      commit('SET_PLAYER_STATE', resetCombatant);
+      commit('SET_ENEMY_STATE', resetCombatant);
+      commit('SET_LOCATION', null);
     },
-    RESET_ENEMY_STATE({ commit }: { commit: Function }) {
-      commit('RESET_ENEMY_STATE', resetStateValues);
+    SET_ENEMY_STATE({ commit }: { commit: Function }, payload: Combatant) {
+      commit('SET_ENEMY_STATE', payload);
+    },
+    SET_PLAYER_STATE({ commit }: { commit: Function }, payload: Combatant) {
+      commit('SET_PLAYER_STATE', payload);
     },
     SET_LOCATION({ commit }: { commit: Function }, payload: number) {
       commit('SET_LOCATION', payload);
