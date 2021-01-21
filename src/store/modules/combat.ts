@@ -32,15 +32,10 @@ export default {
     },
   },
   actions: {
-    SET_COMBAT_STATE({ commit }: { commit: Function }) {
-      const resetCombatant = {
-        health: 100,
-        ready: true,
-        weapon: 0,
-      };
-      commit('SET_PLAYER_STATE', resetCombatant);
-      commit('SET_ENEMY_STATE', resetCombatant);
-      commit('SET_LOCATION', null);
+    SET_COMBAT_STATE({ commit }: { commit: Function }, payload: CombatState) {
+      commit('SET_PLAYER_STATE', payload.player);
+      commit('SET_ENEMY_STATE', payload.enemy);
+      commit('SET_LOCATION', payload.location);
     },
     SET_ENEMY_STATE({ commit }: { commit: Function }, payload: Combatant) {
       commit('SET_ENEMY_STATE', payload);

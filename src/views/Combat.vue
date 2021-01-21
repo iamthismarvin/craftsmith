@@ -21,12 +21,14 @@ export default {
   methods: {
     ...mapActions({
       SET_COMBAT_STATE: 'combat/SET_COMBAT_STATE',
-      SET_LOCATION: 'combat/SET_LOCATION',
     }),
   },
   mounted() {
-    this.SET_COMBAT_STATE();
-    this.SET_LOCATION(100);
+    this.SET_COMBAT_STATE({
+      player: { health: 100, ready: true, weapon: 0 },
+      enemy: { health: 100, ready: true, weapon: 0 },
+      location: 100,
+    });
   },
 };
 </script>
