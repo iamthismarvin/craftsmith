@@ -1,3 +1,5 @@
+// GENERAL
+
 export interface Item {
   id: number;
   baseItem: number;
@@ -20,10 +22,20 @@ export interface Weapon {
   description: string;
 }
 
+// STATE
+
 export interface CombatState {
   health: number;
   ready: boolean;
   weapon: Weapon;
+}
+
+export interface InventoryState {
+  inventory: ItemsState;
+}
+
+export interface ItemsState {
+  inventory: Item[];
 }
 
 export interface State {
@@ -31,6 +43,8 @@ export interface State {
   player: CombatState;
   enemy: CombatState;
 }
+
+// DATABASE
 
 export interface InventoryDB {
   id?: number;
