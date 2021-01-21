@@ -1,5 +1,25 @@
 // GENERAL
 
+interface Attack {
+  min: number;
+  max: number;
+}
+
+export interface Combatant {
+  health: number;
+  ready: boolean;
+  weapon: Weapon;
+}
+
+export interface Equipment {
+  weapon: number;
+  head: number;
+  chest: number;
+  hands: number;
+  legs: number;
+  feet: number;
+}
+
 export interface Item {
   id: number;
   baseItem: number;
@@ -7,10 +27,7 @@ export interface Item {
   rating: number;
 }
 
-interface Attack {
-  min: number;
-  max: number;
-}
+export type Inventory = Item[];
 
 export interface Weapon {
   id: number;
@@ -26,32 +43,13 @@ export interface Weapon {
 
 export interface CombatState {
   location: number;
-  player: CombatantState;
-  enemy: CombatantState;
-}
-
-export interface CombatantState {
-  health: number;
-  ready: boolean;
-  weapon: Weapon;
-}
-
-export interface EquipmentState {
-  weapon: number;
-  head: number;
-  chest: number;
-  hands: number;
-  legs: number;
-  feet: number;
+  player: Combatant;
+  enemy: Combatant;
 }
 
 export interface InventoryState {
-  equipment: EquipmentState;
-  inventory: ItemsState;
-}
-
-export interface ItemsState {
-  inventory: Item[];
+  equipment: Equipment;
+  inventory: Inventory;
 }
 
 export interface LogState {

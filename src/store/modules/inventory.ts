@@ -1,5 +1,5 @@
 import { db } from '@/database';
-import { InventoryState, ItemsState } from '@/utilities/interfaces';
+import { InventoryState, Inventory } from '@/utilities/interfaces';
 
 export default {
   namespaced: true,
@@ -19,7 +19,7 @@ export default {
     inventory: (state: InventoryState) => state.inventory,
   },
   mutations: {
-    UPDATE_INVENTORY_STATE(state: InventoryState, payload: ItemsState) {
+    UPDATE_INVENTORY_STATE(state: InventoryState, payload: Inventory) {
       state.inventory = payload;
     },
   },
