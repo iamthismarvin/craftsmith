@@ -30,7 +30,17 @@ export interface CombatState {
   weapon: Weapon;
 }
 
+export interface EquipmentState {
+  weapon: number;
+  head: number;
+  chest: number;
+  hands: number;
+  legs: number;
+  feet: number;
+}
+
 export interface InventoryState {
+  equipment: EquipmentState;
   inventory: ItemsState;
 }
 
