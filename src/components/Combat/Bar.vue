@@ -1,0 +1,36 @@
+<template>
+  <div class="flex h-8 items-center relative">
+    <div class="bar bg-gray-900 w-full"></div>
+    <div class="bar" :style="[`background: ${foregroundColor}`, `width: ${percentage}%`]"></div>
+    <div class="absolute capitalize font-bold text-center w-full ">{{ type }}</div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Bar',
+  props: {
+    percentage: { type: Number, required: true },
+    type: { type: String, required: true },
+  },
+  computed: {
+    foregroundColor() {
+      switch (this.type) {
+        case 'health':
+          return '#c53030';
+        case 'mana':
+          return '#2b6cb0';
+        default:
+          return '#000000';
+      }
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.bar {
+  height: 2rem;
+  position: absolute;
+}
+</style>

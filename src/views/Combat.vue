@@ -1,7 +1,10 @@
 <template>
   <div>
-    <h3>Health: {{ player.health }}</h3>
-    <h3>Enemy Health: {{ enemy.health }}</h3>
+    <h3>Player:</h3>
+    <Bar type="health" :percentage="player.health" />
+    <Bar type="mana" :percentage="85" />
+    <h3>Enemy:</h3>
+    <Bar type="health" :percentage="enemy.health" />
     <h3>Location: {{ location }}</h3>
     <button @click="basicAttack('player')">Attack Player</button>
     <button @click="basicAttack('enemy')">Attack Enemy</button>
@@ -11,12 +14,16 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import { defineAsyncComponent } from 'vue';
 
 export default {
   name: 'Combat',
   data: () => ({
     turn: 0,
   }),
+  components: {
+    Bar: defineAsyncComponent(() => import('@/components/Combat/Bar.vue')),
+  },
   computed: {
     ...mapGetters({
       location: 'combat/location',
