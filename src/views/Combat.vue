@@ -5,6 +5,7 @@
     <h3>Location: {{ location }}</h3>
     <button @click="basicAttack('player')">Attack Player</button>
     <button @click="basicAttack('enemy')">Attack Enemy</button>
+    <button @click="turn += 1">Add Turn</button>
   </div>
 </template>
 
@@ -14,7 +15,7 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
   name: 'Combat',
   data: () => ({
-    turn: 10,
+    turn: 0,
   }),
   computed: {
     ...mapGetters({
@@ -22,29 +23,8 @@ export default {
       player: 'combat/player',
       enemy: 'combat/enemy',
     }),
-    turnOrder() {
-      const playerAttackSpeed = 1.25;
-      const enemyAttackSpeed = 1;
-      const turnOrder = [];
-      let counter = 0;
-      let playerTurn = 0;
-      let enemyTurn = 0;
-      while (counter < this.turn + 1) {
-        playerTurn += playerAttackSpeed;
-        enemyTurn += enemyAttackSpeed;
-        while (playerTurn >= 1 || enemyTurn >= 1) {
-          if (playerTurn >= enemyTurn) {
-            turnOrder.push('p');
-            playerTurn -= 1;
-          }
-          if (enemyTurn > playerTurn) {
-            turnOrder.push('e');
-            enemyTurn -= 1;
-          }
-        }
-        counter += 1;
-      }
-      return turnOrder[this.turn];
+    currentCombatant() {
+      return this.getTurnOrder(this.turn, 1.25, 1)[this.turn] === 'p' ? 'Player' : 'Enemy';
     },
   },
   methods: {
@@ -56,6 +36,33 @@ export default {
     basicAttack(target) {
       this.MODIFY_TARGET_HEALTH([target, -10]);
     },
+    getTurnOrder(currentTurn, playerAttackSpeed, enemyAttackSpeed) {
+      const turnOrder = [];
+      let counter = 0;
+      let playerCounter = 0;
+      let enemyCounter = 0;
+      while (counter < currentTurn + 1) {
+        playerCounter += playerAttackSpeed;
+        enemyCounter += enemyAttackSpeed;
+        while (playerCounter >= 1 || enemyCounter >= 1) {
+          if (playerCounter >= enemyCounter) {
+            turnOrder.push('p');
+            playerCounter -= 1;
+          }
+          if (enemyCounter > playerCounter) {
+            turnOrder.push('e');
+            enemyCounter -= 1;
+          }
+        }
+        counter += 1;
+      }
+      return turnOrder;
+    },
+    getTurnInfo() {
+      this.CREATE_LOG_ENTRY(`Current Turn #: ${this.turn}`);
+      this.CREATE_LOG_ENTRY(`Turn Order: ${this.getTurnOrder(this.turn, 1.25, 1)}`);
+      this.CREATE_LOG_ENTRY(`Current Combatant: ${this.currentCombatant}`);
+    },
   },
   mounted() {
     this.SET_COMBAT_STATE({
@@ -63,7 +70,12 @@ export default {
       enemy: { health: 100, ready: true, weapon: 0 },
       location: 100,
     });
-    this.CREATE_LOG_ENTRY(`Turn Order: ${this.turnOrder}`);
+    this.getTurnInfo();
+  },
+  watch: {
+    turn() {
+      this.getTurnInfo();
+    },
   },
 };
 </script>
