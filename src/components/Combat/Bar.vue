@@ -1,7 +1,7 @@
 <template>
   <div class="flex h-8 items-center relative">
     <div class="bar bg-gray-900 w-full"></div>
-    <div class="bar" :style="[`background: ${foregroundColor}`, `width: ${percentage}%`]"></div>
+    <div class="bar" :style="[`background: ${foregroundColor}`, `width: ${progress}%`]"></div>
     <div class="absolute capitalize font-bold text-center w-full ">{{ type }}</div>
   </div>
 </template>
@@ -23,6 +23,9 @@ export default {
         default:
           return '#000000';
       }
+    },
+    progress() {
+      return this.percentage < 0 ? 0 : this.percentage;
     },
   },
 };
