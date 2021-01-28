@@ -51,14 +51,14 @@ export default {
     },
     nextCombatants() {
       const speedCounters = { ...this.speedCounters };
-      const turnOrder = [];
+      const nextCombatants = [];
       for (let i = 0; i <= 5; i += 1) {
         const combatant = this.getCurrentCombatant(speedCounters.player, speedCounters.enemy);
         this.updateSpeedCounters(combatant, speedCounters);
-        turnOrder.push(combatant);
+        nextCombatants.push(combatant);
       }
-      turnOrder.shift();
-      return turnOrder;
+      nextCombatants.shift();
+      return nextCombatants;
     },
     playerHealth() {
       return this.player.health;
