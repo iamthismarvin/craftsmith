@@ -9,12 +9,16 @@
     <button v-if="currentCombatant === 'PLAYER' && !combatStatus" @click="basicAttack('enemy')">
       Attack Enemy
     </button>
+    <button v-for="skill in playerSkills" :key="skill.id" @click="skillAttack('enemy', skill)">
+      {{ skill.name }}
+    </button>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { defineAsyncComponent } from 'vue';
+import skills from '@/assets/data/skills';
 
 export default {
   name: 'Combat',
@@ -59,6 +63,10 @@ export default {
     playerHealth() {
       return this.player.health;
     },
+    playerSkills() {
+      const availableSkills = [0, 1];
+      return skills.map(skill => (availableSkills.includes(skill.id) ? skill : null));
+    },
   },
   methods: {
     ...mapActions({
@@ -74,6 +82,12 @@ export default {
     },
     getCurrentCombatant(playerSpeedCounter, enemySpeedCounter) {
       return playerSpeedCounter >= enemySpeedCounter ? 'PLAYER' : 'ENEMY';
+    },
+    skillAttack(target, skill) {
+      const damage = skill.effect(20);
+      this.MODIFY_TARGET_HEALTH([target, -damage]);
+      this.CREATE_LOG_ENTRY(`Combatant used ${skill.name} and dealt ${damage} damage.`);
+      this.turn += 1;
     },
     updateSpeedCounters(combatant, speedCountersPointer) {
       const speedCounters = speedCountersPointer;

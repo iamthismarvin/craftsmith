@@ -29,6 +29,15 @@ export interface Item {
 
 export type Inventory = Item[];
 
+export interface Skill {
+  id: number;
+  name: string;
+  image: string;
+  type: string;
+  description: string;
+  effect: Function;
+}
+
 export interface Weapon {
   id: number;
   name: string;
