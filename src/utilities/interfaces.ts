@@ -38,6 +38,13 @@ export interface Skill {
   effect: Function;
 }
 
+export interface Stats {
+  dexterity: number;
+  intelligence: number;
+  stamina: number;
+  strenght: number;
+}
+
 export interface Weapon {
   id: number;
   name: string;
@@ -73,4 +80,10 @@ export interface InventoryDB {
   enchantment: number;
   rating: number;
   skills: number[];
+}
+
+export interface UserDB {
+  id: number;
+  experience: number;
+  stats: Stats;
 }
