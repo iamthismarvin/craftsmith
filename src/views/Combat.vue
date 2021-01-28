@@ -6,11 +6,9 @@
     <h3>Enemy:</h3>
     <Bar type="health" :percentage="enemy.health" />
     <h3>Location: {{ location }}</h3>
-    <button v-if="currentCombatant === 'ENEMY'" @click="basicAttack('player')">
-      Attack Player
+    <button v-if="currentCombatant === 'PLAYER' && !combatStatus" @click="basicAttack('enemy')">
+      Attack Enemy
     </button>
-    <button v-if="currentCombatant === 'PLAYER'" @click="basicAttack('enemy')">Attack Enemy</button>
-    <button @click="turn += 1">Add Turn</button>
   </div>
 </template>
 
@@ -22,6 +20,7 @@ export default {
   name: 'Combat',
   data: () => ({
     turn: 0,
+    combatStatus: null,
     speedCounters: {
       enemy: 0,
       player: 0,
@@ -43,6 +42,9 @@ export default {
     currentCombatant() {
       return this.getCurrentCombatant(this.speedCounters.player, this.speedCounters.enemy);
     },
+    enemyHealth() {
+      return this.enemy.health;
+    },
     nextCombatants() {
       const speedCounters = { ...this.speedCounters };
       const turnOrder = [];
@@ -54,6 +56,9 @@ export default {
       turnOrder.shift();
       return turnOrder;
     },
+    playerHealth() {
+      return this.player.health;
+    },
   },
   methods: {
     ...mapActions({
@@ -61,6 +66,15 @@ export default {
       SET_COMBAT_STATE: 'combat/SET_COMBAT_STATE',
       MODIFY_TARGET_HEALTH: 'combat/MODIFY_TARGET_HEALTH',
     }),
+    basicAttack(target) {
+      const damage = Math.floor(Math.random() * 30);
+      this.MODIFY_TARGET_HEALTH([target, -damage]);
+      this.CREATE_LOG_ENTRY(`Combatant dealt ${damage} damage.`);
+      this.turn += 1;
+    },
+    getCurrentCombatant(playerSpeedCounter, enemySpeedCounter) {
+      return playerSpeedCounter >= enemySpeedCounter ? 'PLAYER' : 'ENEMY';
+    },
     updateSpeedCounters(combatant, speedCountersPointer) {
       const speedCounters = speedCountersPointer;
       if (combatant === 'PLAYER') {
@@ -70,13 +84,6 @@ export default {
         speedCounters.enemy -= 1;
         speedCounters.player += this.attackSpeed.player;
       }
-    },
-    basicAttack(target) {
-      this.MODIFY_TARGET_HEALTH([target, -10]);
-      this.turn += 1;
-    },
-    getCurrentCombatant(playerSpeedCounter, enemySpeedCounter) {
-      return playerSpeedCounter >= enemySpeedCounter ? 'PLAYER' : 'ENEMY';
     },
   },
   mounted() {
@@ -88,9 +95,30 @@ export default {
     this.CREATE_LOG_ENTRY(`${this.currentCombatant}'s turn.`);
   },
   watch: {
+    currentCombatant() {
+      if (this.currentCombatant === 'ENEMY' && !this.combatStatus) {
+        setTimeout(() => {
+          this.basicAttack('player');
+        }, 1500);
+      }
+    },
+    enemyHealth(value) {
+      if (value <= 0) {
+        this.combatStatus = 'SUCCESS';
+        this.CREATE_LOG_ENTRY(`ENEMY has been defeated.`);
+      }
+    },
+    playerHealth(value) {
+      if (value <= 0) {
+        this.combatStatus = 'FAILURE';
+        this.CREATE_LOG_ENTRY(`PLAYER has been defeated.`);
+      }
+    },
     turn() {
-      this.updateSpeedCounters(this.currentCombatant, this.speedCounters);
-      this.CREATE_LOG_ENTRY(`${this.currentCombatant}'s turn.`);
+      if (!this.combatStatus) {
+        this.updateSpeedCounters(this.currentCombatant, this.speedCounters);
+        this.CREATE_LOG_ENTRY(`${this.currentCombatant}'s turn.`);
+      }
     },
   },
 };
