@@ -35,5 +35,6 @@ export default {
 .bar {
   height: 2rem;
   position: absolute;
+  transition: 1s all;
 }
 </style>
