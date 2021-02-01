@@ -14,11 +14,12 @@ export default {
   data: () => ({ experience: 0 }),
   computed: {
     currentExperience() {
-      return this.experience;
+      const { experience } = this;
+      return experience;
     },
     currentLevel() {
       const { experience } = this;
-      return this.getLevelPosition(experience).level;
+      return this.getLevel(experience).level;
     },
     experienceTable() {
       const experienceTable = [];
@@ -29,27 +30,26 @@ export default {
           experienceTable.push({ level, experience });
         } else {
           const previousLevelExperience = experienceTable[experienceTable.length - 1].experience;
-          const experience = this.getLevelExperience(level) + previousLevelExperience;
+          const experience = this.getNextLevelExperience(level) + previousLevelExperience;
           experienceTable.push({ level, experience });
         }
       }
       return experienceTable;
     },
     nextLevelExperience() {
-      const { experience } = this;
-      return this.getLevelPosition(experience).experience;
+      return this.getNextLevelExperience(this.currentLevel);
     },
     remainingLevelExperience() {
       return this.nextLevelExperience - this.experience;
     },
   },
   methods: {
-    getLevelExperience(level) {
+    getNextLevelExperience(level) {
       const baseExperience = 400;
       const experienceMultiplier = 1.03;
       return Math.floor(baseExperience * experienceMultiplier ** level);
     },
-    getLevelPosition(experience) {
+    getLevel(experience) {
       const { experienceTable } = this;
       return experienceTable.find(level => (level.experience > experience ? level : null));
     },
