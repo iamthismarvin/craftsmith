@@ -6,7 +6,7 @@ const weapons: Weapon[] = [
     name: 'Sword of Beginnings',
     itemType: 0,
     type: 0,
-    image: 'sword.png',
+    image: 'weapons/sword_001.png',
     attack: {
       min: 100,
       max: 200,
@@ -18,7 +18,7 @@ const weapons: Weapon[] = [
     name: 'Greatsword of Beginnings',
     itemType: 0,
     type: 1,
-    image: 'sword.png',
+    image: 'weapons/greatsword_001.png',
     attack: {
       min: 150,
       max: 250,
@@ -30,24 +30,12 @@ const weapons: Weapon[] = [
     name: 'Staff of Beginnings',
     itemType: 0,
     type: 2,
-    image: 'sword.png',
+    image: 'weapons/staff_001.png',
     attack: {
       min: 150,
       max: 250,
     },
     description: `Every adventurer has a beginning. This staff will get you started.`,
-  },
-  {
-    id: 3,
-    name: 'Bow of Beginnings',
-    itemType: 0,
-    type: 3,
-    image: 'sword.png',
-    attack: {
-      min: 100,
-      max: 200,
-    },
-    description: `Every adventurer has a beginning. This bow will get you started.`,
   },
 ];
 
