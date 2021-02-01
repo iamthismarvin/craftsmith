@@ -1,12 +1,12 @@
 <template>
   <div class="item-preview">
-    <img
-      :src="require(`@/assets/items/${image}`)"
-      alt="item"
+    <div
       class="bg-gray-900 border-solid rounded-md"
       :class="[dimensions]"
       :style="{ 'border-color': getRatingColor(rating) }"
-    />
+    >
+      <img :src="require(`@/assets/items/${image}`)" alt="item" class="item-preview__image" />
+    </div>
   </div>
 </template>
 
@@ -28,3 +28,11 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.item-preview {
+  &__image {
+    transform: rotateZ(35deg);
+  }
+}
+</style>
