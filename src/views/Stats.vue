@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import exp from '@/utilities/experience';
+import * as exp from '@/utilities/experience';
 
 export default {
   name: 'Stats',
