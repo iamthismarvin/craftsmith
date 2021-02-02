@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import exp from '@/utilities/experience';
+
 export default {
   name: 'Stats',
   data: () => ({ experience: 0 }),
@@ -19,39 +21,16 @@ export default {
     },
     currentLevel() {
       const { experience } = this;
-      return this.getLevel(experience).level;
+      return exp.getLevel(experience).level;
     },
     experienceTable() {
-      const experienceTable = [];
-      const maxLevel = 500;
-      for (let level = 0; level <= maxLevel; level += 1) {
-        if (level <= 0) {
-          const experience = 0;
-          experienceTable.push({ level, experience });
-        } else {
-          const previousLevelExperience = experienceTable[experienceTable.length - 1].experience;
-          const experience = this.getNextLevelExperience(level) + previousLevelExperience;
-          experienceTable.push({ level, experience });
-        }
-      }
-      return experienceTable;
+      return exp.EXPERIENCE_TABLE;
     },
     nextLevelExperience() {
-      return this.getNextLevelExperience(this.currentLevel);
+      return exp.getNextLevelExperience(this.currentLevel);
     },
     remainingLevelExperience() {
       return this.nextLevelExperience - this.experience;
-    },
-  },
-  methods: {
-    getNextLevelExperience(level) {
-      const baseExperience = 400;
-      const experienceMultiplier = 1.03;
-      return Math.floor(baseExperience * experienceMultiplier ** level);
-    },
-    getLevel(experience) {
-      const { experienceTable } = this;
-      return experienceTable.find(level => (level.experience > experience ? level : null));
     },
   },
 };
