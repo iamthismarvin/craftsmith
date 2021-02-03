@@ -1,4 +1,4 @@
-const generateRating = () => {
+export const generateRating = () => {
   const probabilityRoll = Math.floor(Math.random() * 100);
   const probabilityTable = [50, 60, 70, 80, 90, 95];
   let successRolls = 0;
@@ -12,8 +12,6 @@ const generateRating = () => {
   return successRolls;
 };
 
-const generateSkills = () => {
+export const generateSkills = () => {
   return true;
 };
-
-export { generateRating, generateSkills };

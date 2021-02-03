@@ -7,7 +7,7 @@ const updateInventory = async () => {
   await createStore.dispatch('inventory/UPDATE_INVENTORY');
 };
 
-const createWeapon = async () => {
+export const createWeapon = async () => {
   await db.inventory.add({
     baseItem: Math.floor(Math.random() * Object.keys(weapons).length),
     enchantment: 0,
@@ -17,7 +17,7 @@ const createWeapon = async () => {
   await updateInventory();
 };
 
-const enchantItem = async (id: number) => {
+export const enchantItem = async (id: number) => {
   const items = await db.inventory.toArray();
   const targetItem = items.find(item => item.id === id);
   if (targetItem) {
@@ -39,5 +39,3 @@ const enchantItem = async (id: number) => {
   }
   return 'IDNOTFOUND';
 };
-
-export { createWeapon, enchantItem };
