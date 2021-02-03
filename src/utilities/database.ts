@@ -8,7 +8,7 @@ const updateInventory = async () => {
 };
 
 const updateUser = async () => {
-  console.log('User has been created.');
+  await createStore.dispatch('user/UPDATE_USER');
 };
 
 export const createUser = async () => {

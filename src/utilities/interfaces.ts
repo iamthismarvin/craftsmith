@@ -72,6 +72,12 @@ export interface LogState {
   log: string[];
 }
 
+export interface UserState {
+  id: number;
+  experience: number;
+  stats: Stats;
+}
+
 // DATABASE
 
 export interface InventoryDB {
