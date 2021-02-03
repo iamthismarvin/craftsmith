@@ -7,6 +7,23 @@ const updateInventory = async () => {
   await createStore.dispatch('inventory/UPDATE_INVENTORY');
 };
 
+const updateUser = async () => {
+  console.log('User has been created.');
+};
+
+export const createUser = async () => {
+  await db.user.add({
+    experience: 0,
+    stats: {
+      dexterity: 0,
+      intelligence: 0,
+      stamina: 0,
+      strength: 0,
+    },
+  });
+  await updateUser();
+};
+
 export const createWeapon = async () => {
   await db.inventory.add({
     baseItem: Math.floor(Math.random() * Object.keys(weapons).length),

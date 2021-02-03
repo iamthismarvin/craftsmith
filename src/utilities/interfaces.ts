@@ -42,7 +42,7 @@ export interface Stats {
   dexterity: number;
   intelligence: number;
   stamina: number;
-  strenght: number;
+  strength: number;
 }
 
 export interface Weapon {
@@ -83,7 +83,7 @@ export interface InventoryDB {
 }
 
 export interface UserDB {
-  id: number;
+  id?: number;
   experience: number;
   stats: Stats;
 }
