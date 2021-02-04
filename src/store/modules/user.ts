@@ -5,6 +5,7 @@ export default {
   namespaced: true,
   state: {
     id: null,
+    name: null,
     experience: null,
     stats: {
       dexterity: null,
@@ -16,6 +17,7 @@ export default {
   getters: {
     experience: (state: UserState) => state.experience,
     id: (state: UserState) => state.id,
+    name: (state: UserState) => state.name,
     stats: (state: UserState) => state.stats,
   },
   mutations: {
@@ -24,6 +26,9 @@ export default {
     },
     SET_ID_STATE(state: UserState, payload: number) {
       state.id = payload;
+    },
+    SET_NAME_STATE(state: UserState, payload: string) {
+      state.name = payload;
     },
     SET_STATS_STATE(state: UserState, payload: Stats) {
       state.stats = payload;
@@ -36,6 +41,7 @@ export default {
       if (user) {
         commit('SET_EXPERIENCE_STATE', user.experience);
         commit('SET_ID_STATE', user.id);
+        commit('SET_NAME_STATE', user.name);
         commit('SET_STATS_STATE', user.stats);
       } else {
         console.log(`User (id: ${id}) does not exists.`);

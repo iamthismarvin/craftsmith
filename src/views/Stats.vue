@@ -2,6 +2,7 @@
   <div class="p-2">
     <div class="bg-gray-900 p-2 rounded text-white">
       <div>ID: {{ id }}</div>
+      <div>Character Name: {{ name }}</div>
       <div>Level: {{ currentLevel }} [{{ currentExperience }}/{{ nextLevelExperience }}]</div>
       <div>Experience Until Next Level: {{ remainingLevelExperience }}</div>
       <h3>[Stats]</h3>
@@ -25,6 +26,7 @@ export default {
     ...mapGetters({
       experience: 'user/experience',
       id: 'user/id',
+      name: 'user/name',
       stats: 'user/stats',
     }),
     currentExperience() {

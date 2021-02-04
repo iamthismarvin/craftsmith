@@ -10,7 +10,7 @@ export class CraftsmithDatabase extends Dexie {
     super('CraftsmithDatabase');
     this.version(1).stores({
       inventory: `++id, baseItem, enchantment, rating, *skills`,
-      user: `++id, experience, stats`,
+      user: `++id, name, experience, stats`,
     });
     this.inventory = this.table('inventory');
     this.user = this.table('user');

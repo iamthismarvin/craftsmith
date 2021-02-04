@@ -11,8 +11,9 @@ const updateUser = async () => {
   await createStore.dispatch('user/UPDATE_USER');
 };
 
-export const createUser = async () => {
+export const createUser = async (name: string) => {
   await db.user.add({
+    name,
     experience: 0,
     stats: {
       dexterity: 0,

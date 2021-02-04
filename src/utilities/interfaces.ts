@@ -74,6 +74,7 @@ export interface LogState {
 
 export interface UserState {
   id: number;
+  name: string;
   experience: number;
   stats: Stats;
 }
@@ -90,6 +91,7 @@ export interface InventoryDB {
 
 export interface UserDB {
   id?: number;
+  name: string;
   experience: number;
   stats: Stats;
 }
