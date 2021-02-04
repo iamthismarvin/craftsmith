@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import createStore from '@/store/index';
 import Default from '@/layouts/Default.vue';
 
 const routes = [
@@ -6,37 +7,52 @@ const routes = [
     path: '/',
     name: 'Home',
     component: () => import('@/views/Home.vue'),
-    meta: { layout: Default },
+    meta: { layout: Default, requiresAuth: true },
   },
   {
     path: '/combat',
     name: 'Combat',
     component: () => import('@/views/Combat.vue'),
-    meta: { layout: Default },
+    meta: { layout: Default, requiresAuth: true },
   },
   {
     path: '/craft',
     name: 'Craft',
     component: () => import('@/views/Craft.vue'),
-    meta: { layout: Default },
+    meta: { layout: Default, requiresAuth: true },
   },
   {
     path: '/storage',
     name: 'Storage',
     component: () => import('@/views/Storage.vue'),
-    meta: { layout: Default },
+    meta: { layout: Default, requiresAuth: true },
   },
   {
     path: '/stats',
     name: 'Stats',
     component: () => import('@/views/Stats.vue'),
-    meta: { layout: Default },
+    meta: { layout: Default, requiresAuth: true },
+  },
+  {
+    path: '/start',
+    name: 'Start',
+    component: () => import('@/views/Start.vue'),
+    meta: { layout: Default, requiresAuth: false },
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach(async (to, from, next) => {
+  const store: any = createStore;
+  await store.dispatch('user/UPDATE_USER');
+  if (to.meta.requiresAuth) {
+    return !store.state.user.id ? next({ name: 'Start' }) : next();
+  }
+  return next();
 });
 
 export default router;

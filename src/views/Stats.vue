@@ -12,15 +12,12 @@
         <div>Strength: {{ stats.strength }}</div>
       </div>
     </div>
-    <button @click="createUser" class="bg-red-600 text-white">Create User</button>
-    <button @click="UPDATE_USER" class="bg-green-600 text-white">Update User</button>
   </div>
 </template>
 
 <script>
 import * as exp from '@/utilities/experience';
-import { createUser } from '@/utilities/database';
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Stats',
@@ -46,14 +43,6 @@ export default {
     },
     remainingLevelExperience() {
       return this.nextLevelExperience - this.experience;
-    },
-  },
-  methods: {
-    ...mapActions({
-      UPDATE_USER: 'user/UPDATE_USER',
-    }),
-    createUser() {
-      createUser();
     },
   },
 };
