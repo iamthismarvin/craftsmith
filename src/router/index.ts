@@ -63,7 +63,7 @@ router.beforeEach(async (to, from, next) => {
     } else {
       const localStorageId = checkLocalStorageId();
       if (localStorageId) {
-        await store.dispatch('character/UPDATE_CHARACTER');
+        await store.dispatch('character/SET_CHARACTER_FROM_DB');
         next();
       } else {
         next({ name: 'Characters' });

@@ -35,7 +35,7 @@ export default {
     },
   },
   actions: {
-    async UPDATE_CHARACTER({ commit }: { commit: Function }) {
+    async SET_CHARACTER_FROM_DB({ commit }: { commit: Function }) {
       const id: number = Number(localStorage.getItem('id'));
       const character = await db.character.get(id);
       if (character) {

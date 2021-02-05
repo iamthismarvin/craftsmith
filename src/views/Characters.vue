@@ -28,7 +28,7 @@ export default {
   }),
   methods: {
     ...mapActions({
-      UPDATE_CHARACTER: 'character/UPDATE_CHARACTER',
+      SET_CHARACTER_FROM_DB: 'character/SET_CHARACTER_FROM_DB',
     }),
     createCharacter() {
       createCharacter(this.name);
@@ -44,7 +44,7 @@ export default {
     },
     async selectCharacter(id) {
       localStorage.setItem('id', id);
-      this.UPDATE_CHARACTER();
+      this.SET_CHARACTER_FROM_DB();
       this.$router.push({ name: 'Stats' });
     },
   },
