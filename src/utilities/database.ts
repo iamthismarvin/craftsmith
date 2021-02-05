@@ -7,8 +7,8 @@ const updateInventory = async () => {
   await createStore.dispatch('inventory/UPDATE_INVENTORY');
 };
 
-export const createUser = async (name: string) => {
-  await db.user.add({
+export const createCharacter = async (name: string) => {
+  await db.character.add({
     name,
     experience: 0,
     stats: {

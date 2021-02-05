@@ -47,7 +47,7 @@ const router = createRouter({
 });
 
 const checkStateId = (store: any) => {
-  return store.state.user.id ? store.state.user.id : false;
+  return store.state.character.id ? store.state.character.id : false;
 };
 
 const checkLocalStorageId = () => {
@@ -63,7 +63,7 @@ router.beforeEach(async (to, from, next) => {
     } else {
       const localStorageId = checkLocalStorageId();
       if (localStorageId) {
-        await store.dispatch('user/UPDATE_USER');
+        await store.dispatch('character/UPDATE_CHARACTER');
         next();
       } else {
         next({ name: 'Characters' });

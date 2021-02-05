@@ -2,7 +2,7 @@ import { createStore } from 'vuex';
 import combat from '@/store/modules/combat';
 import inventory from '@/store/modules/inventory';
 import log from '@/store/modules/log';
-import user from '@/store/modules/user';
+import character from '@/store/modules/character';
 
 export default createStore({
   state: {},
@@ -12,6 +12,6 @@ export default createStore({
     combat,
     inventory,
     log,
-    user,
+    character,
   },
 });

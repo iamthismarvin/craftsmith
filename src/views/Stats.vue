@@ -24,10 +24,10 @@ export default {
   name: 'Stats',
   computed: {
     ...mapGetters({
-      experience: 'user/experience',
-      id: 'user/id',
-      name: 'user/name',
-      stats: 'user/stats',
+      experience: 'character/experience',
+      id: 'character/id',
+      name: 'character/name',
+      stats: 'character/stats',
     }),
     currentExperience() {
       const { experience } = this;

@@ -2,21 +2,21 @@
   <div class="p-4">
     <h2>Characters</h2>
     <button
-      v-for="user in users"
-      :key="user.id"
-      @click="selectUser(user.id)"
+      v-for="character in characters"
+      :key="character.id"
+      @click="selectCharacter(character.id)"
       class="bg-gray-600 text-white"
     >
-      {{ user.name }}
+      {{ character.name }}
     </button>
     <h2>Create New Character</h2>
     <input v-model="name" type="text" placeholder="Character Name" class="bg-gray-900" />
-    <button @click="createUser()" class="bg-red-600 text-white">Create User</button>
+    <button @click="createCharacter()" class="bg-red-600 text-white">Create Character</button>
   </div>
 </template>
 
 <script>
-import { createUser } from '@/utilities/database';
+import { createCharacter } from '@/utilities/database';
 import { mapActions } from 'vuex';
 import { db } from '@/database';
 
@@ -24,32 +24,32 @@ export default {
   name: 'Characters',
   data: () => ({
     name: null,
-    users: [],
+    characters: [],
   }),
   methods: {
     ...mapActions({
-      UPDATE_USER: 'user/UPDATE_USER',
+      UPDATE_CHARACTER: 'character/UPDATE_CHARACTER',
     }),
-    createUser() {
-      createUser(this.name);
+    createCharacter() {
+      createCharacter(this.name);
       this.clearNameField();
-      this.getUsersFromDB();
+      this.getCharactersFromDB();
     },
     clearNameField() {
       this.name = null;
     },
-    async getUsersFromDB() {
-      const users = await db.user.toArray();
-      this.users = users;
+    async getCharactersFromDB() {
+      const characters = await db.character.toArray();
+      this.characters = characters;
     },
-    async selectUser(id) {
+    async selectCharacter(id) {
       localStorage.setItem('id', id);
-      this.UPDATE_USER();
+      this.UPDATE_CHARACTER();
       this.$router.push({ name: 'Stats' });
     },
   },
   mounted() {
-    this.getUsersFromDB();
+    this.getCharactersFromDB();
   },
 };
 </script>

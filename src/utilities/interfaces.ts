@@ -73,7 +73,7 @@ export interface LogState {
   log: string[];
 }
 
-export interface UserState {
+export interface CharacterState {
   id: number;
   name: string;
   experience: number;
@@ -91,7 +91,7 @@ export interface InventoryDB {
   skills: number[];
 }
 
-export interface UserDB {
+export interface CharacterDB {
   id?: number;
   name: string;
   experience: number;
