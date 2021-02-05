@@ -46,13 +46,32 @@ const router = createRouter({
   routes,
 });
 
+const checkStateId = (store: any) => {
+  return store.state.user.id ? store.state.user.id : false;
+};
+
+const checkLocalStorageId = () => {
+  return localStorage.getItem('id') ? localStorage.getItem('id') : false;
+};
+
 router.beforeEach(async (to, from, next) => {
-  const store: any = createStore;
-  await store.dispatch('user/UPDATE_USER');
   if (to.meta.requiresAuth) {
-    return !store.state.user.id ? next({ name: 'Start' }) : next();
+    const store = createStore;
+    const stateId = checkStateId(store);
+    if (stateId) {
+      next();
+    } else {
+      const localStorageId = checkLocalStorageId();
+      if (localStorageId) {
+        await store.dispatch('user/UPDATE_USER');
+        next();
+      } else {
+        next({ name: 'Start' });
+      }
+    }
+  } else {
+    next();
   }
-  return next();
 });
 
 export default router;

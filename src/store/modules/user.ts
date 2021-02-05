@@ -36,7 +36,7 @@ export default {
   },
   actions: {
     async UPDATE_USER({ commit }: { commit: Function }) {
-      const id = 1;
+      const id: number = Number(localStorage.getItem('id'));
       const user = await db.user.get(id);
       if (user) {
         commit('SET_EXPERIENCE_STATE', user.experience);

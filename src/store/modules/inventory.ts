@@ -24,8 +24,15 @@ export default {
     },
   },
   actions: {
-    async UPDATE_INVENTORY({ commit }: { commit: Function }) {
-      commit('UPDATE_INVENTORY_STATE', await db.inventory.toArray());
+    async UPDATE_INVENTORY({ commit, rootState }: { commit: Function; rootState: any }) {
+      const { user } = rootState;
+      commit(
+        'UPDATE_INVENTORY_STATE',
+        await db.inventory
+          .where('character')
+          .equals(user.id)
+          .toArray(),
+      );
     },
   },
 };

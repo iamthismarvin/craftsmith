@@ -20,6 +20,7 @@ export default {
   computed: {
     ...mapGetters({
       inventory: 'inventory/inventory',
+      userId: 'user/id',
     }),
     items() {
       return this.inventory.map(item => this.getItemData(item));
@@ -30,7 +31,7 @@ export default {
       UPDATE_INVENTORY: 'inventory/UPDATE_INVENTORY',
     }),
     addWeapon() {
-      createWeapon();
+      createWeapon(this.userId);
     },
   },
   created() {

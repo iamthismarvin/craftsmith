@@ -22,6 +22,7 @@ export interface Equipment {
 
 export interface Item {
   id: number;
+  character: number;
   baseItem: number;
   enchantment: number;
   rating: number;
@@ -83,6 +84,7 @@ export interface UserState {
 
 export interface InventoryDB {
   id?: number;
+  character: number;
   baseItem: number;
   enchantment: number;
   rating: number;
