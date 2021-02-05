@@ -21,7 +21,7 @@ import { mapActions } from 'vuex';
 import { db } from '@/database';
 
 export default {
-  name: 'Start',
+  name: 'Characters',
   data: () => ({
     name: null,
     users: [],

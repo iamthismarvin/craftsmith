@@ -34,9 +34,9 @@ const routes = [
     meta: { layout: Default, requiresAuth: true },
   },
   {
-    path: '/start',
-    name: 'Start',
-    component: () => import('@/views/Start.vue'),
+    path: '/characters',
+    name: 'Characters',
+    component: () => import('@/views/Characters.vue'),
     meta: { layout: Default, requiresAuth: false },
   },
 ];
@@ -66,7 +66,7 @@ router.beforeEach(async (to, from, next) => {
         await store.dispatch('user/UPDATE_USER');
         next();
       } else {
-        next({ name: 'Start' });
+        next({ name: 'Characters' });
       }
     }
   } else {
