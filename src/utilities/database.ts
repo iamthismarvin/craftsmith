@@ -1,7 +1,7 @@
 import { db } from '@/database';
 import createStore from '@/store/index';
 import weapons from '@/assets/data/weapons';
-import { generateRating } from '@/utilities/generator';
+import * as ugen from '@/utilities/generator';
 
 const updateInventory = async () => {
   await createStore.dispatch('inventory/UPDATE_INVENTORY');
@@ -25,7 +25,7 @@ export const createWeapon = async (character: number) => {
     character,
     baseItem: Math.floor(Math.random() * Object.keys(weapons).length),
     enchantment: 0,
-    rating: generateRating(),
+    rating: ugen.generateRating(),
     skills: [],
   });
   await updateInventory();

@@ -8,7 +8,7 @@
 <script>
 import { defineAsyncComponent } from 'vue';
 import { mapGetters, mapActions } from 'vuex';
-import { createWeapon } from '@/utilities/database';
+import * as udb from '@/utilities/database';
 import helpers from '@/mixins/helpers';
 
 export default {
@@ -31,7 +31,7 @@ export default {
       UPDATE_INVENTORY: 'inventory/UPDATE_INVENTORY',
     }),
     addWeapon() {
-      createWeapon(this.characterId);
+      udb.createWeapon(this.characterId);
     },
   },
   created() {

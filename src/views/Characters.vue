@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { createCharacter } from '@/utilities/database';
+import * as udb from '@/utilities/database';
 import { mapActions } from 'vuex';
 import { db } from '@/database';
 
@@ -31,7 +31,7 @@ export default {
       SET_CHARACTER_FROM_DB: 'character/SET_CHARACTER_FROM_DB',
     }),
     createCharacter() {
-      createCharacter(this.name);
+      udb.createCharacter(this.name);
       this.clearNameField();
       this.getCharactersFromDB();
     },

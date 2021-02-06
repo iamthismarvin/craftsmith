@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import * as exp from '@/utilities/experience';
+import * as uexp from '@/utilities/experience';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -35,13 +35,13 @@ export default {
     },
     currentLevel() {
       const { experience } = this;
-      return exp.getLevel(experience).level;
+      return uexp.getLevel(experience).level;
     },
     experienceTable() {
-      return exp.EXPERIENCE_TABLE;
+      return uexp.EXPERIENCE_TABLE;
     },
     nextLevelExperience() {
-      return exp.getNextLevelExperience(this.currentLevel);
+      return uexp.getNextLevelExperience(this.currentLevel);
     },
     remainingLevelExperience() {
       return this.nextLevelExperience - this.experience;

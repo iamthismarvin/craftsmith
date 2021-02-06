@@ -37,7 +37,7 @@
 <script>
 import { defineAsyncComponent } from 'vue';
 import { mapActions } from 'vuex';
-import { enchantItem } from '@/utilities/database';
+import * as udb from '@/utilities/database';
 import helpers from '@/mixins/helpers';
 
 export default {
@@ -54,7 +54,7 @@ export default {
       CREATE_LOG_ENTRY: 'log/CREATE_LOG_ENTRY',
     }),
     async enchantEquipment() {
-      const result = await enchantItem(this.item.id);
+      const result = await udb.enchantItem(this.item.id);
       switch (result) {
         case 'ESUCCESS':
           this.CREATE_LOG_ENTRY(
