@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import createStore from '@/store/index';
+import { CharacterState } from '@/utilities/interfaces';
 import Default from '@/layouts/Default.vue';
 
 const routes = [
@@ -46,28 +47,27 @@ const router = createRouter({
   routes,
 });
 
-const checkStateId = (store: any) => {
+const checkCharacterStateID = (store: any) => {
   return store.state.character.id ? store.state.character.id : false;
 };
 
-const checkLocalStorageId = () => {
+const checkLocalStorageID = () => {
   return localStorage.getItem('id') ? localStorage.getItem('id') : false;
 };
 
 router.beforeEach(async (to, from, next) => {
+  const store = createStore;
+  const characterStateID: CharacterState = checkCharacterStateID(store);
+  const localStorageID = checkLocalStorageID();
+
   if (to.meta.requiresAuth) {
-    const store = createStore;
-    const stateId = checkStateId(store);
-    if (stateId) {
+    if (characterStateID) {
+      next();
+    } else if (localStorageID) {
+      await store.dispatch('character/SET_CHARACTER_FROM_DB');
       next();
     } else {
-      const localStorageId = checkLocalStorageId();
-      if (localStorageId) {
-        await store.dispatch('character/SET_CHARACTER_FROM_DB');
-        next();
-      } else {
-        next({ name: 'Characters' });
-      }
+      next({ name: 'Characters' });
     }
   } else {
     next();
