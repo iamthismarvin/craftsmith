@@ -1,44 +1,44 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import createStore from '@/store/index';
 import { CharacterState } from '@/utilities/interfaces';
-import Default from '@/layouts/Default.vue';
+import App from '@/layouts/App.vue';
 
 const routes = [
   {
     path: '/',
     name: 'Home',
     component: () => import('@/views/Home.vue'),
-    meta: { layout: Default, requiresAuth: true },
+    meta: { layout: App, requiresAuth: true },
   },
   {
     path: '/combat',
     name: 'Combat',
     component: () => import('@/views/Combat.vue'),
-    meta: { layout: Default, requiresAuth: true },
+    meta: { layout: App, requiresAuth: true },
   },
   {
     path: '/craft',
     name: 'Craft',
     component: () => import('@/views/Craft.vue'),
-    meta: { layout: Default, requiresAuth: true },
+    meta: { layout: App, requiresAuth: true },
   },
   {
     path: '/storage',
     name: 'Storage',
     component: () => import('@/views/Storage.vue'),
-    meta: { layout: Default, requiresAuth: true },
+    meta: { layout: App, requiresAuth: true },
   },
   {
     path: '/stats',
     name: 'Stats',
     component: () => import('@/views/Stats.vue'),
-    meta: { layout: Default, requiresAuth: true },
+    meta: { layout: App, requiresAuth: true },
   },
   {
     path: '/characters',
     name: 'Characters',
     component: () => import('@/views/Characters.vue'),
-    meta: { layout: Default, requiresAuth: false },
+    meta: { layout: App, requiresAuth: false },
   },
 ];
 
