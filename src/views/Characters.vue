@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4">
+  <div class="p-2">
     <h2>Characters</h2>
     <button
       v-for="character in characters"

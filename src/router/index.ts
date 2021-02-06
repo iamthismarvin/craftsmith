@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import createStore from '@/store/index';
 import { CharacterState } from '@/utilities/interfaces';
 import App from '@/layouts/App.vue';
+import Default from '@/layouts/Default.vue';
 
 const routes = [
   {
@@ -38,7 +39,7 @@ const routes = [
     path: '/characters',
     name: 'Characters',
     component: () => import('@/views/Characters.vue'),
-    meta: { layout: App, requiresAuth: false },
+    meta: { layout: Default, requiresAuth: false },
   },
 ];
 
