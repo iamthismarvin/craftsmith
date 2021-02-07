@@ -1,53 +1,50 @@
 <template>
-  <div class="text-white p-2">
-    <div class="flex flex-col just justify-center items-center">
-      <h1 class="font-bold">Inventory</h1>
-      <p>Materials: {{ inventory.materials }}</p>
-      <p>Items: {{ inventory.items }}</p>
+  <div class="p-2">
+    <div class="bg-gray-900 p-2 rounded text-white">
+      <div>ID: {{ id }}</div>
+      <div>Character Name: {{ name }}</div>
+      <div>Level: {{ currentLevel }} [{{ currentExperience }}/{{ nextLevelExperience }}]</div>
+      <div>Experience Until Next Level: {{ remainingLevelExperience }}</div>
+      <h3>[Stats]</h3>
+      <div v-if="stats">
+        <div>Dexterity: {{ stats.dexterity }}</div>
+        <div>Intelligence: {{ stats.intelligence }}</div>
+        <div>Stamina: {{ stats.stamina }}</div>
+        <div>Strength: {{ stats.strength }}</div>
+      </div>
     </div>
-    <button class="bg-green-600 hover:bg-green-700" @click="gatherMaterials">
-      Gather Materials
-    </button>
-    <button class="bg-purple-600 hover:bg-purple-700" @click="craftItem">
-      Craft Item
-    </button>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import * as uexp from '@/utilities/experience';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Home',
-  data: () => ({
-    inventory: {
-      items: 0,
-      materials: 0,
-    },
-  }),
   computed: {
     ...mapGetters({
-      log: 'log/log',
+      experience: 'character/experience',
+      id: 'character/id',
+      name: 'character/name',
+      stats: 'character/stats',
     }),
-  },
-  methods: {
-    ...mapActions({
-      CREATE_LOG_ENTRY: 'log/CREATE_LOG_ENTRY',
-    }),
-    gatherMaterials() {
-      const materials = Math.floor(Math.random() * 25);
-      this.inventory.materials += materials;
-      this.CREATE_LOG_ENTRY(`You gathered ${materials} materials!`);
+    currentExperience() {
+      const { experience } = this;
+      return experience;
     },
-    craftItem() {
-      const requiredMaterials = 25;
-      if (this.inventory.materials >= requiredMaterials) {
-        this.inventory.materials -= requiredMaterials;
-        this.inventory.items += 1;
-        this.CREATE_LOG_ENTRY('You crafted an item!');
-      } else {
-        this.CREATE_LOG_ENTRY('Insufficient materials to craft item.');
-      }
+    currentLevel() {
+      const { experience } = this;
+      return uexp.getLevel(experience).level;
+    },
+    experienceTable() {
+      return uexp.EXPERIENCE_TABLE;
+    },
+    nextLevelExperience() {
+      return uexp.getNextLevelExperience(this.currentLevel);
+    },
+    remainingLevelExperience() {
+      return this.nextLevelExperience - this.experience;
     },
   },
 };

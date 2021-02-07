@@ -45,7 +45,7 @@ export default {
     async selectCharacter(id) {
       localStorage.setItem('id', id);
       this.SET_CHARACTER_FROM_DB();
-      this.$router.push({ name: 'Stats' });
+      this.$router.push({ name: 'Home' });
     },
   },
   mounted() {

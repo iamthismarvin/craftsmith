@@ -30,12 +30,6 @@ const routes = [
     meta: { layout: App, requiresAuth: true },
   },
   {
-    path: '/stats',
-    name: 'Stats',
-    component: () => import('@/views/Stats.vue'),
-    meta: { layout: App, requiresAuth: true },
-  },
-  {
     path: '/characters',
     name: 'Characters',
     component: () => import('@/views/Characters.vue'),
