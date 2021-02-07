@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     handleMenu() {
-      this.$emit('handle-menu');
+      this.$router.push({ name: 'Characters' });
     },
   },
 };

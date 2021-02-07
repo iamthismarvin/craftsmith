@@ -1,6 +1,6 @@
 <template>
   <div class="default bg-purple-900 min-h-screen">
-    <Navigation @handle-menu="$router.push('/')" class="absolute top-0 w-full" />
+    <Navigation class="absolute top-0 w-full" />
     <main class="default__body absolute bottom-0 overflow-auto text-white w-full">
       <slot />
     </main>

@@ -1,6 +1,6 @@
 <template>
   <div class="app bg-purple-900 min-h-screen">
-    <Navigation @handle-menu="$router.push('/')" class="absolute top-0 w-full" />
+    <Navigation class="absolute top-0 w-full" />
     <Activity :entries="log" class="pt-12 px-4 " />
     <main class="app__body absolute h-full overflow-auto text-white w-full">
       <slot />
