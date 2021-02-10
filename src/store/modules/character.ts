@@ -19,6 +19,8 @@ export default {
     id: (state: CharacterState) => state.id,
     name: (state: CharacterState) => state.name,
     stats: (state: CharacterState) => state.stats,
+    usedStatPoints: (state: CharacterState) =>
+      state.stats.dexterity + state.stats.intelligence + state.stats.stamina + state.stats.strength,
   },
   mutations: {
     SET_EXPERIENCE_STATE(state: CharacterState, payload: number) {

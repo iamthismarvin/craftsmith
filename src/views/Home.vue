@@ -6,11 +6,15 @@
       <div>Level: {{ currentLevel }} [{{ currentExperience }}/{{ nextLevelExperience }}]</div>
       <div>Experience Until Next Level: {{ remainingLevelExperience }}</div>
       <h3>[Stats]</h3>
+      <div>Available Stat Points: {{ availableStatPoints }}</div>
       <div v-if="stats">
-        <div>Dexterity: {{ stats.dexterity }}</div>
-        <div>Intelligence: {{ stats.intelligence }}</div>
-        <div>Stamina: {{ stats.stamina }}</div>
-        <div>Strength: {{ stats.strength }}</div>
+        <div v-for="stat in namedStats" :key="stat.name" class="flex">
+          <div class="w-1/2">{{ stat.name }}: {{ stat.value }}</div>
+          <button class="bg-red-600" @click="removeStatPoint(stat.name)">
+            -
+          </button>
+          <button class="bg-green-600" @click="addStatPoint(stat.name)">+</button>
+        </div>
       </div>
     </div>
   </div>
@@ -22,13 +26,31 @@ import { mapGetters } from 'vuex';
 
 export default {
   name: 'Home',
+  data: () => ({
+    tempStats: {
+      dexterity: 0,
+      intelligence: 0,
+      stamina: 0,
+      strength: 0,
+    },
+  }),
   computed: {
     ...mapGetters({
       experience: 'character/experience',
       id: 'character/id',
       name: 'character/name',
       stats: 'character/stats',
+      usedStatPoints: 'character/usedStatPoints',
     }),
+    availableStatPoints() {
+      const remainingStatPoints = 4;
+      const usedStatPoints =
+        this.tempStats.dexterity +
+        this.tempStats.intelligence +
+        this.tempStats.stamina +
+        this.tempStats.strength;
+      return remainingStatPoints - usedStatPoints;
+    },
     currentExperience() {
       const { experience } = this;
       return experience;
@@ -46,6 +68,38 @@ export default {
     remainingLevelExperience() {
       return this.nextLevelExperience - this.experience;
     },
+    namedStats() {
+      return [
+        { name: 'Dexterity', value: this.stats.dexterity },
+        { name: 'Intelligence', value: this.stats.intelligence },
+        { name: 'Stamina', value: this.stats.stamina },
+        { name: 'Strength', value: this.stats.strength },
+      ];
+    },
+  },
+  methods: {
+    getRemainingStatPoints() {
+      const { usedStatPoints } = this;
+      const remainingStatPoints = uexp.getRemainingStatPoints(this.currentLevel, usedStatPoints);
+      return remainingStatPoints;
+    },
+    addStatPoint(stat) {
+      const targetStat = stat.toLowerCase();
+      if (this.availableStatPoints > 0) {
+        this.tempStats[targetStat] += 1;
+        this.stats[targetStat] += 1;
+      }
+    },
+    removeStatPoint(stat) {
+      const targetStat = stat.toLowerCase();
+      if (this.tempStats[targetStat] > 0) {
+        this.tempStats[targetStat] -= 1;
+        this.stats[targetStat] -= 1;
+      }
+    },
+  },
+  mounted() {
+    this.getRemainingStatPoints();
   },
 };
 </script>
