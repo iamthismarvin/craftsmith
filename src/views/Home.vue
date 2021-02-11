@@ -57,7 +57,7 @@ export default {
     },
     currentLevel() {
       const { experience } = this;
-      return uexp.getLevel(experience).level;
+      return uexp.getLevel(experience);
     },
     experienceTable() {
       return uexp.EXPERIENCE_TABLE;
