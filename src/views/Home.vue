@@ -16,13 +16,14 @@
           <button class="bg-green-600" @click="addStatPoint(stat.name)">+</button>
         </div>
       </div>
+      <button @click="ADD_EXPERIENCE(100), getRemainingStatPoints">Add 100 Experience</button>
     </div>
   </div>
 </template>
 
 <script>
 import * as uexp from '@/utilities/experience';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'Home',
@@ -78,6 +79,9 @@ export default {
     },
   },
   methods: {
+    ...mapActions({
+      ADD_EXPERIENCE: 'character/ADD_EXPERIENCE',
+    }),
     getRemainingStatPoints() {
       const { usedStatPoints } = this;
       const remainingStatPoints = uexp.getRemainingStatPoints(this.currentLevel, usedStatPoints);
