@@ -83,7 +83,6 @@ export default {
   },
   methods: {
     ...mapActions({
-      ADD_EXPERIENCE: 'character/ADD_EXPERIENCE',
       SET_CHARACTER_FROM_DB: 'character/SET_CHARACTER_FROM_DB',
     }),
     getRemainingStatPoints() {

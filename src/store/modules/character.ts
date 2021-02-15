@@ -37,13 +37,6 @@ export default {
     },
   },
   actions: {
-    ADD_EXPERIENCE(
-      { commit, state }: { commit: Function; state: CharacterState },
-      payload: number,
-    ) {
-      let { experience } = state;
-      commit('SET_EXPERIENCE_STATE', (experience += payload));
-    },
     async SET_CHARACTER_FROM_DB({ commit }: { commit: Function }) {
       const id: number = Number(localStorage.getItem('id'));
       const character = await db.character.get(id);
