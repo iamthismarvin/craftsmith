@@ -16,7 +16,7 @@
           <button class="bg-green-600" @click="addStatPoint(stat.name)">+</button>
         </div>
       </div>
-      <button @click="ADD_EXPERIENCE(100), getRemainingStatPoints">Add 100 Experience</button>
+      <button @click="addExperience(100), getRemainingStatPoints">Add 100 Experience</button>
       <button @click="saveStats()">Save Stats</button>
       <button @click="resetTempStats()">Clear Changes</button>
     </div>
@@ -90,6 +90,10 @@ export default {
       const { usedStatPoints } = this;
       const remainingStatPoints = uexp.getRemainingStatPoints(this.currentLevel, usedStatPoints);
       return remainingStatPoints;
+    },
+    async addExperience(experience) {
+      await udb.updateExperience(this.id, experience);
+      this.SET_CHARACTER_FROM_DB();
     },
     addStatPoint(stat) {
       const targetStat = stat.toLowerCase();

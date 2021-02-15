@@ -55,6 +55,16 @@ export const enchantItem = async (id: number) => {
   return 'IDNOTFOUND';
 };
 
+export const updateExperience = async (character: number, experienceParam: number) => {
+  const targetCharacter = await db.character.get(character);
+  if (targetCharacter) {
+    const newExperience = targetCharacter.experience + experienceParam;
+    await db.character.update(character, { experience: newExperience });
+  } else {
+    console.log('Character not found.');
+  }
+};
+
 export const updateStats = async (character: number, stats: Stats) => {
   await db.character.update(character, { stats }).then(updated => {
     if (updated) {
