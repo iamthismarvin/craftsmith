@@ -17,6 +17,7 @@
         </div>
       </div>
       <button @click="ADD_EXPERIENCE(100), getRemainingStatPoints">Add 100 Experience</button>
+      <button @click="saveStats()">Save Stats</button>
     </div>
   </div>
 </template>
@@ -44,13 +45,13 @@ export default {
       usedStatPoints: 'character/usedStatPoints',
     }),
     availableStatPoints() {
-      const remainingStatPoints = 4;
-      const usedStatPoints =
+      const remainingStatPoints = this.getRemainingStatPoints();
+      const tempStatPoints =
         this.tempStats.dexterity +
         this.tempStats.intelligence +
         this.tempStats.stamina +
         this.tempStats.strength;
-      return remainingStatPoints - usedStatPoints;
+      return remainingStatPoints - tempStatPoints;
     },
     currentExperience() {
       const { experience } = this;
@@ -71,10 +72,10 @@ export default {
     },
     namedStats() {
       return [
-        { name: 'Dexterity', value: this.stats.dexterity },
-        { name: 'Intelligence', value: this.stats.intelligence },
-        { name: 'Stamina', value: this.stats.stamina },
-        { name: 'Strength', value: this.stats.strength },
+        { name: 'Dexterity', value: this.stats.dexterity + this.tempStats.dexterity },
+        { name: 'Intelligence', value: this.stats.intelligence + this.tempStats.intelligence },
+        { name: 'Stamina', value: this.stats.stamina + this.tempStats.stamina },
+        { name: 'Strength', value: this.stats.strength + this.tempStats.strength },
       ];
     },
   },
@@ -91,19 +92,30 @@ export default {
       const targetStat = stat.toLowerCase();
       if (this.availableStatPoints > 0) {
         this.tempStats[targetStat] += 1;
-        this.stats[targetStat] += 1;
       }
     },
     removeStatPoint(stat) {
       const targetStat = stat.toLowerCase();
       if (this.tempStats[targetStat] > 0) {
         this.tempStats[targetStat] -= 1;
-        this.stats[targetStat] -= 1;
       }
     },
-  },
-  mounted() {
-    this.getRemainingStatPoints();
+    resetTempStats() {
+      this.tempStats = { dexterity: 0, intelligence: 0, stamina: 0, strength: 0 };
+    },
+    saveStats() {
+      const currentStats = this.stats;
+      const { tempStats } = this;
+      const dexterity = currentStats.dexterity + tempStats.dexterity;
+      const intelligence = currentStats.intelligence + tempStats.intelligence;
+      const stamina = currentStats.stamina + tempStats.stamina;
+      const strength = currentStats.strength + tempStats.strength;
+      this.stats.dexterity = dexterity;
+      this.stats.intelligence = intelligence;
+      this.stats.stamina = stamina;
+      this.stats.strength = strength;
+      this.resetTempStats();
+    },
   },
 };
 </script>

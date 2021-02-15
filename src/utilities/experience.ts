@@ -32,7 +32,7 @@ export const getNextLevelExperience = (levelParam: number) => {
   return tableLevel ? tableLevel.experience : null;
 };
 
-export const getRemainingStatPoints = async (level: number, usedStatPoints: number) => {
+export const getRemainingStatPoints = (level: number, usedStatPoints: number) => {
   const statPointsAtCurrentLevel = level * STAT_POINTS_PER_LEVEL;
   return statPointsAtCurrentLevel - usedStatPoints;
 };
