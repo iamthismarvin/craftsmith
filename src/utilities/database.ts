@@ -2,6 +2,7 @@ import { db } from '@/database';
 import createStore from '@/store/index';
 import weapons from '@/assets/data/weapons';
 import * as ugen from '@/utilities/generator';
+import { Stats } from './interfaces';
 
 const updateInventory = async () => {
   await createStore.dispatch('inventory/UPDATE_INVENTORY');
@@ -52,4 +53,14 @@ export const enchantItem = async (id: number) => {
     return 'EMAX';
   }
   return 'IDNOTFOUND';
+};
+
+export const updateStats = async (character: number, stats: Stats) => {
+  await db.character.update(character, { stats }).then(updated => {
+    if (updated) {
+      console.log('Updated');
+    } else {
+      console.log('Not updated');
+    }
+  });
 };

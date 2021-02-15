@@ -18,12 +18,14 @@
       </div>
       <button @click="ADD_EXPERIENCE(100), getRemainingStatPoints">Add 100 Experience</button>
       <button @click="saveStats()">Save Stats</button>
+      <button @click="resetTempStats()">Clear Changes</button>
     </div>
   </div>
 </template>
 
 <script>
 import * as uexp from '@/utilities/experience';
+import * as udb from '@/utilities/database';
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
@@ -82,6 +84,7 @@ export default {
   methods: {
     ...mapActions({
       ADD_EXPERIENCE: 'character/ADD_EXPERIENCE',
+      SET_CHARACTER_FROM_DB: 'character/SET_CHARACTER_FROM_DB',
     }),
     getRemainingStatPoints() {
       const { usedStatPoints } = this;
@@ -103,17 +106,17 @@ export default {
     resetTempStats() {
       this.tempStats = { dexterity: 0, intelligence: 0, stamina: 0, strength: 0 };
     },
-    saveStats() {
+    async saveStats() {
       const currentStats = this.stats;
       const { tempStats } = this;
-      const dexterity = currentStats.dexterity + tempStats.dexterity;
-      const intelligence = currentStats.intelligence + tempStats.intelligence;
-      const stamina = currentStats.stamina + tempStats.stamina;
-      const strength = currentStats.strength + tempStats.strength;
-      this.stats.dexterity = dexterity;
-      this.stats.intelligence = intelligence;
-      this.stats.stamina = stamina;
-      this.stats.strength = strength;
+      const newStats = {
+        dexterity: currentStats.dexterity + tempStats.dexterity,
+        intelligence: currentStats.intelligence + tempStats.intelligence,
+        stamina: currentStats.stamina + tempStats.stamina,
+        strength: currentStats.strength + tempStats.strength,
+      };
+      await udb.updateStats(this.id, newStats);
+      await this.SET_CHARACTER_FROM_DB();
       this.resetTempStats();
     },
   },
