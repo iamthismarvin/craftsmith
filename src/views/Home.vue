@@ -7,15 +7,21 @@
       <div>Experience Until Next Level: {{ remainingLevelExperience }}</div>
       <h3>[Stats]</h3>
       <div>Available Stat Points: {{ availableStatPoints }}</div>
-      <div v-if="stats">
-        <div v-for="stat in namedStats" :key="stat.name" class="flex">
-          <div class="w-1/2">{{ stat.name }}: {{ stat.value }}</div>
-          <button class="bg-red-600" @click="removeStatPoint(stat.name)">
-            -
-          </button>
-          <button class="bg-green-600" @click="addStatPoint(stat.name)">+</button>
-        </div>
+      <div v-for="stat in namedStats" :key="stat.name">
+        <div>{{ stat.name }}: {{ stat.value }}</div>
       </div>
+    </div>
+    <div v-if="stats" class="flex flex-wrap justify-evenly my-1">
+      <StatCounter
+        v-for="stat in namedStats"
+        :key="stat.name"
+        :stat="stat"
+        @remove-stat="removeStatPoint($event)"
+        @add-stat="addStatPoint($event)"
+        class="my-1 px-1"
+      />
+    </div>
+    <div class="bg-gray-900 p-2 rounded text-white">
       <button @click="addExperience(100), getRemainingStatPoints">Add 100 Experience</button>
       <button @click="saveStats()">Save Stats</button>
       <button @click="resetTempStats()">Clear Changes</button>
@@ -27,6 +33,7 @@
 import * as uexp from '@/utilities/experience';
 import * as udb from '@/utilities/database';
 import { mapGetters, mapActions } from 'vuex';
+import { defineAsyncComponent } from 'vue';
 
 export default {
   name: 'Home',
@@ -38,6 +45,9 @@ export default {
       strength: 0,
     },
   }),
+  components: {
+    StatCounter: defineAsyncComponent(() => import('@/components/StatCounter.vue')),
+  },
   computed: {
     ...mapGetters({
       experience: 'character/experience',
