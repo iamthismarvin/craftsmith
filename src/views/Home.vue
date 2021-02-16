@@ -1,16 +1,6 @@
 <template>
   <div class="p-2">
-    <div class="bg-gray-900 p-2 rounded text-white">
-      <div>ID: {{ id }}</div>
-      <div>Character Name: {{ name }}</div>
-      <div>Level: {{ currentLevel }} [{{ currentExperience }}/{{ nextLevelExperience }}]</div>
-      <div>Experience Until Next Level: {{ remainingLevelExperience }}</div>
-      <h3>[Stats]</h3>
-      <div>Available Stat Points: {{ availableStatPoints }}</div>
-      <div v-for="stat in namedStats" :key="stat.name">
-        <div>{{ stat.name }}: {{ stat.value }}</div>
-      </div>
-    </div>
+    <CharacterData :data="characterData" />
     <div v-if="stats" class="flex flex-wrap justify-evenly my-1">
       <StatCounter
         v-for="stat in namedStats"
@@ -46,6 +36,7 @@ export default {
     },
   }),
   components: {
+    CharacterData: defineAsyncComponent(() => import('@/components/CharacterData.vue')),
     StatCounter: defineAsyncComponent(() => import('@/components/StatCounter.vue')),
   },
   computed: {
@@ -64,6 +55,17 @@ export default {
         this.tempStats.stamina +
         this.tempStats.strength;
       return remainingStatPoints - tempStatPoints;
+    },
+    characterData() {
+      return {
+        id: this.id,
+        name: this.name,
+        level: this.currentLevel,
+        experience: this.currentExperience,
+        nextLevelExperience: this.nextLevelExperience,
+        remainingLevelExperience: this.remainingLevelExperience,
+        availableStatPoints: this.availableStatPoints,
+      };
     },
     currentExperience() {
       const { experience } = this;
