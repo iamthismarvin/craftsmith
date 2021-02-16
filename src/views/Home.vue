@@ -6,6 +6,8 @@
         v-for="stat in namedStats"
         :key="stat.name"
         :stat="stat"
+        :availableStatPoints="availableStatPoints"
+        :tempStat="tempStats[stat.name.toLowerCase()]"
         @remove-stat="removeStatPoint($event)"
         @add-stat="addStatPoint($event)"
         class="my-1 px-1"
