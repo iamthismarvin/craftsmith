@@ -3,7 +3,11 @@
     <Navigation />
     <div class="flex flex-col landscape:flex-row">
       <Activity :entries="log" class="p-4 landscape:w-2/5" />
-      <main class="overflow-auto text-white landscape:w-3/5" :style="{ height: appHeight }">
+      <main
+        ref="main"
+        class="overflow-auto text-white landscape:w-3/5"
+        :style="{ height: appHeight }"
+      >
         <slot />
       </main>
     </div>
@@ -46,6 +50,17 @@ export default {
       this.windowHeight = window.innerHeight;
       this.windowWidth = window.innerWidth;
     });
+  },
+  methods: {
+    scrollToTop() {
+      const { main } = this.$refs;
+      main.scrollTop = 0;
+    },
+  },
+  watch: {
+    $route() {
+      this.scrollToTop();
+    },
   },
 };
 </script>
