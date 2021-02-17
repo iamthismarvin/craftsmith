@@ -1,5 +1,5 @@
 <template>
-  <div class="px-2">
+  <div class="p-4">
     <Item v-for="item in items" :key="item.id" :item="item" class="mb-2" />
     <button @click="addWeapon">Add</button>
   </div>

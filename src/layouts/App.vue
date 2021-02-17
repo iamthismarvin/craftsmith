@@ -1,11 +1,13 @@
 <template>
-  <div class="app bg-purple-900 min-h-screen">
-    <Navigation class="absolute top-0 w-full" />
-    <Activity :entries="log" class="pt-12 px-4 " />
-    <main class="app__body absolute h-full overflow-auto text-white w-full">
-      <slot />
-    </main>
-    <Menu class="absolute bottom-0" />
+  <div class="app bg-purple-900 flex flex-col justify-between min-h-full">
+    <Navigation />
+    <div class="flex flex-col landscape:flex-row">
+      <Activity :entries="log" class="p-4 landscape:w-2/5" />
+      <main class="overflow-auto text-white landscape:w-3/5" :style="{ height: appHeight }">
+        <slot />
+      </main>
+    </div>
+    <Menu />
   </div>
 </template>
 
@@ -15,6 +17,10 @@ import { mapGetters } from 'vuex';
 
 export default {
   name: 'App',
+  data: () => ({
+    windowHeight: window.innerHeight,
+    windowWidth: window.innerWidth,
+  }),
   components: {
     Activity: defineAsyncComponent(() => import('@/components/Activity.vue')),
     Menu: defineAsyncComponent(() => import('@/components/Menu/Menu.vue')),
@@ -24,16 +30,27 @@ export default {
     ...mapGetters({
       log: 'log/log',
     }),
+    appHeight() {
+      const { windowHeight } = this;
+      const { windowWidth } = this;
+      const navigationHeight = 3;
+      const activityHeight = 12.5;
+      const menuHeight = 4;
+      const portraitHeight = `calc(${windowHeight}px - ${navigationHeight}rem - ${activityHeight}rem - ${menuHeight}rem)`;
+      const landscapeHeight = `calc(${windowHeight}px - ${navigationHeight}rem - ${menuHeight}rem)`;
+      return windowHeight >= windowWidth ? portraitHeight : landscapeHeight;
+    },
+  },
+  mounted() {
+    window.addEventListener('resize', () => {
+      this.windowHeight = window.innerHeight;
+      this.windowWidth = window.innerWidth;
+    });
   },
 };
 </script>
 <style lang="scss" scoped>
 .app {
   background-image: url('~@/assets/images/topography.svg');
-
-  &__body {
-    max-height: calc(100vh - 18.5rem);
-    top: 14.5rem;
-  }
 }
 </style>

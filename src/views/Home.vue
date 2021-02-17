@@ -1,5 +1,5 @@
 <template>
-  <div class="p-2">
+  <div class="p-4">
     <CharacterData :data="characterData" />
     <div v-if="stats" class="flex flex-wrap justify-evenly my-1">
       <StatCounter
