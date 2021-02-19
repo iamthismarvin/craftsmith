@@ -32,6 +32,13 @@ export const getNextLevelExperience = (levelParam: number) => {
   return tableLevel ? tableLevel.experience : null;
 };
 
+export const getPreviousLevelExperience = (levelParam: number) => {
+  const tableLevel = EXPERIENCE_TABLE.find(level =>
+    level.level === levelParam - 1 ? level : null,
+  );
+  return tableLevel ? tableLevel.experience : null;
+};
+
 export const getRemainingStatPoints = (level: number, usedStatPoints: number) => {
   const statPointsAtCurrentLevel = level * STAT_POINTS_PER_LEVEL;
   return statPointsAtCurrentLevel - usedStatPoints;

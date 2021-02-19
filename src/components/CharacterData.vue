@@ -8,6 +8,7 @@
       <div>Name: {{ data.name }}</div>
       <div>ID: {{ data.id }}</div>
       <div>Experience: {{ data.experience }} / {{ data.nextLevelExperience }}</div>
+      <Bar type="experience" :percentage="experiencePercentage" />
       <div>Experience Until Next Level: {{ data.remainingLevelExperience }}</div>
       <div>Available Stat Points: {{ data.availableStatPoints }}</div>
     </div>
@@ -15,10 +16,22 @@
 </template>
 
 <script>
+import { defineAsyncComponent } from 'vue';
+
 export default {
   name: 'CharacterData',
   props: {
     data: { type: Object, required: true },
+  },
+  computed: {
+    experiencePercentage() {
+      const totalLevelExp = this.data.nextLevelExperience - this.data.previousLevelExperience;
+      const currentLevelExp = this.data.experience - this.data.previousLevelExperience;
+      return (currentLevelExp / totalLevelExp) * 100;
+    },
+  },
+  components: {
+    Bar: defineAsyncComponent(() => import('@/components/Combat/Bar.vue')),
   },
 };
 </script>

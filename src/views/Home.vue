@@ -64,6 +64,7 @@ export default {
         name: this.name,
         level: this.currentLevel,
         experience: this.currentExperience,
+        previousLevelExperience: this.previousLevelExperience,
         nextLevelExperience: this.nextLevelExperience,
         remainingLevelExperience: this.remainingLevelExperience,
         availableStatPoints: this.availableStatPoints,
@@ -82,6 +83,9 @@ export default {
     },
     nextLevelExperience() {
       return uexp.getNextLevelExperience(this.currentLevel);
+    },
+    previousLevelExperience() {
+      return uexp.getPreviousLevelExperience(this.currentLevel);
     },
     remainingLevelExperience() {
       return this.nextLevelExperience - this.experience;
