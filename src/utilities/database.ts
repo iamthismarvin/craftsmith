@@ -74,3 +74,8 @@ export const updateStats = async (character: number, stats: Stats) => {
     }
   });
 };
+
+export const checkExistingCharacterName = async (characterName: string) => {
+  const targetName = await db.character.get({ name: characterName });
+  return targetName;
+};
