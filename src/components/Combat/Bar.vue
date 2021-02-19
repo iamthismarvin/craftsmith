@@ -2,7 +2,9 @@
   <div class="flex h-8 items-center relative">
     <div class="bar bg-gray-900 w-full"></div>
     <div class="bar" :style="[`background: ${foregroundColor}`, `width: ${progress}%`]"></div>
-    <div class="absolute capitalize font-bold text-center w-full ">{{ type }}</div>
+    <div class="absolute capitalize font-bold text-center w-full ">
+      {{ type !== 'experience' ? type : `${percentage.toFixed(3)}%` }}
+    </div>
   </div>
 </template>
 
@@ -20,6 +22,8 @@ export default {
           return '#c53030';
         case 'mana':
           return '#2b6cb0';
+        case 'experience':
+          return '#2f855a';
         default:
           return '#000000';
       }
