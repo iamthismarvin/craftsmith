@@ -101,11 +101,6 @@ export default {
     },
   },
   mounted() {
-    this.SET_COMBAT_STATE({
-      player: { health: 100, ready: true, weapon: 0 },
-      enemy: { health: 100, ready: true, weapon: 0 },
-      location: 100,
-    });
     this.CREATE_LOG_ENTRY(`${this.currentCombatant}'s turn.`);
   },
   beforeRouteLeave(to, from, next) {
