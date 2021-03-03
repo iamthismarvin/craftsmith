@@ -11,6 +11,13 @@ export interface Combatant {
   weapon: Weapon;
 }
 
+export interface Dungeon {
+  id: Number;
+  name: String;
+  description: String;
+  monsterID: number;
+}
+
 export interface Equipment {
   weapon: number;
   head: number;
@@ -29,6 +36,12 @@ export interface Item {
 }
 
 export type Inventory = Item[];
+
+export type Monster = {
+  id: number;
+  name: String;
+  weaponID: number;
+};
 
 export interface Skill {
   id: number;
