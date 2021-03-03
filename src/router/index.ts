@@ -18,6 +18,12 @@ const routes = [
     meta: { layout: App, requiresAuth: true },
   },
   {
+    path: '/dungeons',
+    name: 'Dungeons',
+    component: () => import('@/views/Dungeons.vue'),
+    meta: { layout: App, requiresAuth: true },
+  },
+  {
     path: '/craft',
     name: 'Craft',
     component: () => import('@/views/Craft.vue'),
