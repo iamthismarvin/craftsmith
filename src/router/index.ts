@@ -56,6 +56,15 @@ const checkLocalStorageID = () => {
   return localStorage.getItem('id') ? localStorage.getItem('id') : false;
 };
 
+const validateCombatRoute = async (next: Function) => {
+  const combatState = await createStore.getters['combat/location'];
+  if (combatState === null) {
+    next({ name: 'Dungeons' });
+  } else {
+    next();
+  }
+};
+
 router.beforeEach(async (to, from, next) => {
   const store = createStore;
   const characterStateID: CharacterState = checkCharacterStateID(store);
@@ -66,7 +75,11 @@ router.beforeEach(async (to, from, next) => {
       next();
     } else if (localStorageID) {
       await store.dispatch('character/SET_CHARACTER_FROM_DB');
-      next();
+      if (to.name === 'Combat') {
+        await validateCombatRoute(next);
+      } else {
+        next();
+      }
     } else {
       next({ name: 'Characters' });
     }
