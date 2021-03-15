@@ -9,14 +9,15 @@ const updateInventory = async () => {
 };
 
 export const createCharacter = async (name: string) => {
+  const MINIMUM_STAT_VALUE = 5;
   await db.character.add({
     name,
     experience: 0,
     stats: {
-      dexterity: 0,
-      intelligence: 0,
-      stamina: 0,
-      strength: 0,
+      dexterity: MINIMUM_STAT_VALUE,
+      intelligence: MINIMUM_STAT_VALUE,
+      stamina: MINIMUM_STAT_VALUE,
+      strength: MINIMUM_STAT_VALUE,
     },
   });
 };
