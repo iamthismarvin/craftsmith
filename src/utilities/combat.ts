@@ -13,3 +13,8 @@ export const getMonsterData = (id: number) => {
 export const getWeaponData = (id: number) => {
   return weapons.find(weapon => weapon.id === id);
 };
+
+export const getHealthValue = (stamina: number) => {
+  const BASE_HEALTH = 100;
+  return BASE_HEALTH + stamina * 20;
+};

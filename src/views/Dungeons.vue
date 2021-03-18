@@ -24,6 +24,7 @@ export default {
   computed: {
     ...mapGetters({
       equipment: 'inventory/equipment',
+      stats: 'character/stats',
     }),
   },
   methods: {
@@ -33,12 +34,19 @@ export default {
     createDungeonInstance(dungeonID) {
       const dungeon = ucbt.getDungeonData(dungeonID);
       const monster = ucbt.getMonsterData(dungeon.monsterID);
-      const player = { equipment: this.equipment };
+      const player = { equipment: this.equipment, stats: this.stats };
 
       this.SET_COMBAT_STATE({
-        player: { health: 100, ready: true, weapon: ucbt.getWeaponData(player.equipment.weapon) },
+        player: {
+          health: {
+            max: ucbt.getHealthValue(player.stats.stamina),
+            remaining: ucbt.getHealthValue(player.stats.stamina),
+          },
+          ready: true,
+          weapon: ucbt.getWeaponData(player.equipment.weapon),
+        },
         enemy: {
-          health: 100,
+          health: { max: 100, remaining: 100 },
           ready: true,
           weapon: ucbt.getWeaponData(monster.weaponID),
         },

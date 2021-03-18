@@ -6,7 +6,7 @@ interface Attack {
 }
 
 export interface Combatant {
-  health: number;
+  health: { max: number; remaining: number };
   ready: boolean;
   weapon: Weapon;
 }

@@ -1,10 +1,10 @@
 <template>
   <div>
     <h3>Player:</h3>
-    <Bar type="health" :percentage="player.health" />
+    <Bar type="health" :percentage="playerHealth" />
     <Bar type="mana" :percentage="85" />
     <h3>Enemy:</h3>
-    <Bar type="health" :percentage="enemy.health" />
+    <Bar type="health" :percentage="enemyHealth" />
     <h3>Location: {{ location }}</h3>
     <button v-if="currentCombatant === 'PLAYER' && !combatStatus" @click="basicAttack('enemy')">
       Attack Enemy
@@ -47,7 +47,7 @@ export default {
       return this.getCurrentCombatant(this.speedCounters.player, this.speedCounters.enemy);
     },
     enemyHealth() {
-      return this.enemy.health;
+      return (this.enemy.health.remaining / this.enemy.health.max) * 100;
     },
     nextCombatants() {
       const speedCounters = { ...this.speedCounters };
@@ -61,7 +61,7 @@ export default {
       return nextCombatants;
     },
     playerHealth() {
-      return this.player.health;
+      return (this.player.health.remaining / this.player.health.max) * 100;
     },
     playerSkills() {
       const availableSkills = [0, 1];

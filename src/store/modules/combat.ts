@@ -5,12 +5,12 @@ export default {
   state: {
     location: null,
     player: {
-      health: null,
+      health: { max: null, remaining: null },
       ready: null,
       weapon: null,
     },
     enemy: {
-      health: null,
+      health: { max: null, remaining: null },
       ready: null,
       weapon: null,
     },
@@ -31,10 +31,10 @@ export default {
       state.location = payload;
     },
     SET_ENEMY_HEALTH: (state: CombatState, payload: number) => {
-      state.enemy.health = payload;
+      state.enemy.health.remaining = payload;
     },
     SET_PLAYER_HEALTH: (state: CombatState, payload: number) => {
-      state.player.health = payload;
+      state.player.health.remaining = payload;
     },
   },
   actions: {
@@ -43,10 +43,10 @@ export default {
       payload: [string, number],
     ) {
       if (payload[0] === 'player') {
-        commit('SET_PLAYER_HEALTH', state.player.health + payload[1]);
+        commit('SET_PLAYER_HEALTH', state.player.health.remaining + payload[1]);
       }
       if (payload[0] === 'enemy') {
-        commit('SET_ENEMY_HEALTH', state.enemy.health + payload[1]);
+        commit('SET_ENEMY_HEALTH', state.enemy.health.remaining + payload[1]);
       }
     },
     SET_COMBAT_STATE({ commit }: { commit: Function }, payload: CombatState) {
