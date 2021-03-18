@@ -19,6 +19,7 @@
 import { mapActions, mapGetters } from 'vuex';
 import { defineAsyncComponent } from 'vue';
 import skills from '@/assets/data/skills';
+import * as udb from '@/utilities/database';
 
 export default {
   name: 'Combat',
@@ -42,6 +43,7 @@ export default {
       location: 'combat/location',
       player: 'combat/player',
       enemy: 'combat/enemy',
+      characterID: 'character/id',
     }),
     currentCombatant() {
       return this.getCurrentCombatant(this.speedCounters.player, this.speedCounters.enemy);
@@ -80,6 +82,13 @@ export default {
       this.CREATE_LOG_ENTRY(`Combatant dealt ${damage} damage.`);
       this.turn += 1;
     },
+    createLoot(characterID) {
+      const probabilityRoll = Math.floor(Math.random() * 100);
+      if (probabilityRoll >= 50) {
+        udb.createWeapon(characterID);
+        this.CREATE_LOG_ENTRY('You received a new weapon! Check your Storage.');
+      }
+    },
     getCurrentCombatant(playerSpeedCounter, enemySpeedCounter) {
       return playerSpeedCounter >= enemySpeedCounter ? 'PLAYER' : 'ENEMY';
     },
@@ -111,6 +120,11 @@ export default {
     return exitConfirmation ? next() : next(false);
   },
   watch: {
+    combatStatus(value) {
+      if (value === 'SUCCESS') {
+        this.createLoot(this.characterID);
+      }
+    },
     currentCombatant() {
       if (this.currentCombatant === 'ENEMY' && !this.combatStatus) {
         setTimeout(() => {
