@@ -1,17 +1,31 @@
 <template>
-  <div>
-    <h3>Player:</h3>
-    <Bar type="health" :percentage="playerHealth" />
-    <Bar type="mana" :percentage="85" />
-    <h3>Enemy:</h3>
-    <Bar type="health" :percentage="enemyHealth" />
-    <h3>Location: {{ location }}</h3>
-    <button v-if="currentCombatant === 'PLAYER' && !combatStatus" @click="basicAttack('enemy')">
-      Attack Enemy
-    </button>
-    <button v-for="skill in playerSkills" :key="skill.id" @click="skillAttack('enemy', skill)">
-      {{ skill.name }}
-    </button>
+  <div class="p-4">
+    <h3 class="heading">{{ dungeonName }}</h3>
+    <div class="mb-6">
+      <div class="mb-2">
+        <h3>{{ dungeonMonster }}</h3>
+        <Bar type="health" :percentage="enemyHealth" />
+      </div>
+      <div>
+        <h3>{{ name }}</h3>
+        <Bar type="health" :percentage="playerHealth" />
+        <Bar type="mana" :percentage="85" />
+      </div>
+    </div>
+    <div v-if="currentCombatant === 'PLAYER' && !combatStatus">
+      <h3 class="heading">Skills</h3>
+      <button @click="basicAttack('enemy')" class="skill">
+        Basic Attack
+      </button>
+      <button
+        v-for="skill in playerSkills"
+        :key="skill.id"
+        @click="skillAttack('enemy', skill)"
+        class="skill"
+      >
+        {{ skill.name }}
+      </button>
+    </div>
   </div>
 </template>
 
@@ -20,6 +34,7 @@ import { mapActions, mapGetters } from 'vuex';
 import { defineAsyncComponent } from 'vue';
 import skills from '@/assets/data/skills';
 import * as udb from '@/utilities/database';
+import * as ucbt from '@/utilities/combat';
 
 export default {
   name: 'Combat',
@@ -44,9 +59,16 @@ export default {
       player: 'combat/player',
       enemy: 'combat/enemy',
       characterID: 'character/id',
+      name: 'character/name',
     }),
     currentCombatant() {
       return this.getCurrentCombatant(this.speedCounters.player, this.speedCounters.enemy);
+    },
+    dungeonName() {
+      return ucbt.getDungeonData(this.location).name;
+    },
+    dungeonMonster() {
+      return ucbt.getMonsterData(ucbt.getDungeonData(this.location).monsterID).name;
     },
     enemyHealth() {
       return (this.enemy.health.remaining / this.enemy.health.max) * 100;
@@ -163,3 +185,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.skill {
+  @apply bg-gray-900 mb-2 rounded;
+}
+</style>
