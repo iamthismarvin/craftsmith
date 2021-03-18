@@ -119,11 +119,14 @@ export default {
     this.CREATE_LOG_ENTRY(`${this.currentCombatant}'s turn.`);
   },
   beforeRouteLeave(to, from, next) {
-    // eslint-disable-next-line no-alert
-    const exitConfirmation = window.confirm(
-      'Are you sure you want to leave combat? All combat progress will be lost.',
-    );
-    return exitConfirmation ? next() : next(false);
+    if (this.combatStatus !== ('SUCCESS' || 'FAILURE')) {
+      // eslint-disable-next-line no-alert
+      const exitConfirmation = window.confirm(
+        'Are you sure you want to leave combat? All combat progress will be lost.',
+      );
+      return exitConfirmation ? next() : next(false);
+    }
+    return next();
   },
   watch: {
     combatStatus(value) {
