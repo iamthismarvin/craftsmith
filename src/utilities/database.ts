@@ -2,6 +2,7 @@ import { db } from '@/database';
 import createStore from '@/store/index';
 import weapons from '@/assets/data/weapons';
 import * as ugen from '@/utilities/generator';
+import * as uexp from '@/utilities/experience';
 import { Stats } from './interfaces';
 
 const updateInventory = async () => {
@@ -9,15 +10,15 @@ const updateInventory = async () => {
 };
 
 export const createCharacter = async (name: string) => {
-  const MINIMUM_STAT_VALUE = 5;
+  const BASE_STAT_VALUE = uexp.BASE_STAT_POINTS / 4;
   await db.character.add({
     name,
     experience: 0,
     stats: {
-      dexterity: MINIMUM_STAT_VALUE,
-      intelligence: MINIMUM_STAT_VALUE,
-      stamina: MINIMUM_STAT_VALUE,
-      strength: MINIMUM_STAT_VALUE,
+      dexterity: BASE_STAT_VALUE,
+      intelligence: BASE_STAT_VALUE,
+      stamina: BASE_STAT_VALUE,
+      strength: BASE_STAT_VALUE,
     },
   });
 };

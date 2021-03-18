@@ -91,8 +91,8 @@ export default {
     },
     namedStats() {
       return [
-        { name: 'Dexterity', value: this.stats.dexterity + this.tempStats.dexterity },
-        { name: 'Intelligence', value: this.stats.intelligence + this.tempStats.intelligence },
+        // { name: 'Dexterity', value: this.stats.dexterity + this.tempStats.dexterity },
+        // { name: 'Intelligence', value: this.stats.intelligence + this.tempStats.intelligence },
         { name: 'Stamina', value: this.stats.stamina + this.tempStats.stamina },
         { name: 'Strength', value: this.stats.strength + this.tempStats.strength },
       ];

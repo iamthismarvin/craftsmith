@@ -2,6 +2,7 @@ export const MAX_LEVEL = 500;
 export const BASE_EXPERIENCE = 400;
 export const EXPERIENCE_MULTIPLIER = 1.03;
 export const STAT_POINTS_PER_LEVEL = 4;
+export const BASE_STAT_POINTS = 20;
 
 export const createExperienceTable = () => {
   const experienceTable = [];
@@ -40,6 +41,6 @@ export const getPreviousLevelExperience = (levelParam: number) => {
 };
 
 export const getRemainingStatPoints = (level: number, usedStatPoints: number) => {
-  const statPointsAtCurrentLevel = level * STAT_POINTS_PER_LEVEL;
+  const statPointsAtCurrentLevel = level * STAT_POINTS_PER_LEVEL + BASE_STAT_POINTS;
   return statPointsAtCurrentLevel - usedStatPoints;
 };
