@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col landscape:flex-row p-2">
     <section class="characters__section">
-      <h2>Characters</h2>
+      <h3 class="heading">Characters</h3>
       <button
         v-for="character in characters"
         :key="character.id"
@@ -12,7 +12,7 @@
       </button>
     </section>
     <section class="characters__section">
-      <h2>Create New Character</h2>
+      <h3 class="heading">Create New Character</h3>
       <input
         v-model="name"
         type="text"
