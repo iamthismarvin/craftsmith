@@ -1,5 +1,6 @@
 <template>
   <div class="p-4">
+    <h3 class="heading">Dungeons</h3>
     <button
       v-for="dungeon in dungeons"
       :key="dungeon.name"

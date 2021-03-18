@@ -1,5 +1,6 @@
 <template>
   <div class="p-4">
+    <h3 class="heading">Storage</h3>
     <Item v-for="item in items" :key="item.id" :item="item" class="mb-2" />
   </div>
 </template>
