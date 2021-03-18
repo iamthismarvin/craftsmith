@@ -29,7 +29,6 @@
       <button class="bg-orange-600 hover:bg-orange-700 mx-1">
         Dismantle
       </button>
-      <button class="bg-green-600 hover:bg-green-700">Sell</button>
     </div>
   </div>
 </template>
