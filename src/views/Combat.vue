@@ -75,7 +75,13 @@ export default {
       CREATE_LOG_ENTRY: 'log/CREATE_LOG_ENTRY',
       SET_COMBAT_STATE: 'combat/SET_COMBAT_STATE',
       MODIFY_TARGET_HEALTH: 'combat/MODIFY_TARGET_HEALTH',
+      SET_CHARACTER_FROM_DB: 'character/SET_CHARACTER_FROM_DB',
     }),
+    async addExperience(experience) {
+      await udb.updateExperience(this.characterID, experience);
+      this.SET_CHARACTER_FROM_DB();
+      this.CREATE_LOG_ENTRY(`You have gained ${experience} experience.`);
+    },
     basicAttack(target) {
       const damage = Math.floor(Math.random() * 30);
       this.MODIFY_TARGET_HEALTH([target, -damage]);
@@ -123,6 +129,7 @@ export default {
     combatStatus(value) {
       if (value === 'SUCCESS') {
         this.createLoot(this.characterID);
+        this.addExperience(100);
       }
     },
     currentCombatant() {
